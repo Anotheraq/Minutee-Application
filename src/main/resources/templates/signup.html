@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="The best way to organize your time and control everything in your life">
+    <meta name="keywords" content="time, organization, management, workflow">
+    <script src="https://kit.fontawesome.com/201024f681.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{css/intro.css}">
+    <link rel="stylesheet" th:href="@{css/utilities.css}">
+    <title>Minutee | Sign Up</title>
+</head>
+<body>
+    <section class="leftside">
+        <h1>MINUTEE</h1>
+    </section>
+
+    <section class="rightside">
+        <div class="user-input-window">
+            <div class="user-input-window-container">
+                <h2 class="user-input-window-type">Sign Up</h2>
+                <form action="/signup" method="POST" class="form-group">
+                    <span th:text="${message}"></span>
+                    <div class="form-element">
+                        <i class="fas fa-envelope"></i>
+                        <input type="text" name="email" id="email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-element">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" name="password" id="password" placeholder="Enter your password">
+                    </div>
+                    <div class="form-element">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" name="confirm" id="confirm" placeholder="Confirm your password">
+                    </div>
+                    <button type="submit" class="btn-primary">Sign Up</button>
+                </form>
+                <footer>
+                    <h2>
+                        Already have an account?
+                        <button class="btn-redirect">Log In</button>
+                    </h2>
+                </footer>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

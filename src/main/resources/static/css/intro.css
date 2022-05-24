@@ -1,0 +1,104 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@500&family=Poppins:wght@400;500&display=swap');
+
+/* Reset */
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+/* Core Stylings */
+body {
+    display: flex;
+    background:
+        linear-gradient(to top left, transparent 50%, #FFFFFF 50%)
+        right 0px top 0px/50% 300% no-repeat#678B74;
+    background-position: 0px 0px;
+}
+
+h1 {
+    font-size: 40px;
+    font-weight: 500;
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+/* Leftside Stylings */
+.leftside {
+    width: 50vw;
+    height: 100vh;
+    font-family: 'Jura', sans-serif;
+}
+
+/* Rightside Stylings */
+.rightside {
+    width: 50vw;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+.leftside,
+.rightside {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* User Input Window Stylings */
+.user-input-window {
+    background: #FFFFFF;
+    border-radius: 20px;
+    width: 378px;
+    height: 453px;
+}
+
+.user-input-window-container {
+    margin: 20px 0px;
+}
+
+.user-input-window-type {
+    text-align: center;
+    font-weight: 500;
+}
+
+.form-group {
+    margin: 0px 40px;
+}
+
+.form-element,
+.btn-primary {
+    margin-top: 34px;
+}
+
+i {
+    position: absolute;
+    padding-top: 3px;
+}
+
+input {
+    width: 100%;
+    font-size: 16px;
+    color: #777777;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #000000;
+    padding: 0px 0px 5px 25px;
+    font-family: 'Poppins', sans-serif;
+}
+
+input:focus {
+    color: #000000;
+}
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+footer h2 {
+    font-size: 16px;
+}
