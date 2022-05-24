@@ -1,0 +1,31 @@
+/* Stylings for primary button */
+.btn-primary {
+    background: #678B74;
+    border-radius: 20px;
+    border: none;
+    width: 100%;
+    padding: 9px;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background: #506C5A;
+}
+
+/* Stylings for redirection button */
+.btn-redirect {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.btn-redirect:hover {
+    color: #506C5A;
+}

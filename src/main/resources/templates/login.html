@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="The best way to organize your time and control everything in your life">
+    <meta name="keywords" content="time, organization, management, workflow">
+    <script src="https://kit.fontawesome.com/201024f681.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{css/intro.css}">
+    <link rel="stylesheet" th:href="@{css/utilities.css}">
+    <title>Minutee | Log In</title>
+</head>
+<body>
+    <section class="leftside">
+        <h1>MINUTEE</h1>
+    </section>
+
+    <section class="rightside">
+        <div class="user-input-window">
+            <div class="user-input-window-container">
+                <h2 class="user-input-window-type">Log In</h2>
+                <form action="/login" method="POST" class="form-group">
+                    <span th:text="${message}"></span>
+                    <div class="form-element">
+                        <i class="fas fa-envelope"></i>
+                        <input type="text" name="email" id="email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-element">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" name="password" id="password" placeholder="Enter your password">
+                    </div>
+                    <button type="submit" class="btn-primary">Log In</button>
+                </form>
+                <footer>
+                    <h2>
+                        Don't have an account?
+                        <button class="btn-redirect">Sign Up</button>
+                    </h2>
+                </footer>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
