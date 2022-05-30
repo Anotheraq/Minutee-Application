@@ -1,26 +1,26 @@
 package com.group3b.project.models;
 
+import java.util.UUID;
+
 public class User {
-    private int id;
+    private UUID id;
     private String email;
     private String password;
 
-    public User(int id, String email, String password) {
+    public User(String email, String password) {
+        this(UUID.randomUUID(), email, password);
+    }
+    public User(UUID id, String email, String password) {
         this.id = id;
         this.email = email;
         this.password = password;
     }
 
-    public User(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
-
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
