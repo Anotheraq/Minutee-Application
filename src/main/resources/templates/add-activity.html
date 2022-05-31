@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add activity</title>
+    <link rel="stylesheet" th:href="@{css/add-act.css}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="The best way to organize your time and control everything in your life">
+    <meta name="keywords" content="time, organization, management, workflow">
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js}"></script>
+    <script th:src="@{https://kit.fontawesome.com/201024f681.js}" crossorigin="anonymous"></script>
+    <script th:src="@{js/scrypt.js}" defer></script>
+    <script th:src="@{js/checkbox.js}" defer></script>
+    <script th:src="@{js/test.js}" defer></script>
+    <script th:src="@{js/submitforms.js}" defer></script>
+
+</head>
+<body>
+<div class = "content-wrapper">
+    <div class="upper-text">
+        Add Activity
+    </div>
+
+    <div class="additional-text">
+        Here you can add your activity
+    </div>
+    <br>
+
+    <div class="category-container">
+        CATEGORY
+        <form name="form1" id="form1" action="/action.java">
+
+            <select name="subject" id="category">
+            <option value="" selected="selected">Choose category</option>
+        </select>
+
+        </form>
+    </div>
+<br>
+    <div class="description">
+        DESCRIPTION (OPTIONAL)
+        <form id="form-ac1" action="/add-activity" method="POST" class="description-group">
+            <input name="description" type="text" placeholder="Provide description">
+        </form>
+    </div>
+<br>
+    <div class="choose-time">
+        TIME
+        <br>
+        <label class="checkbox">Enter Total Time
+            <input type="checkbox" name="sg2">
+            <span class="checkmark"></span>
+        </label>
+        <br>
+        <label class="checkbox">Enter Start/End Time
+            <input type="checkbox" name="sg">
+            <span class="checkmark"></span>
+        </label>
+        <br>
+        <label class="checkbox">Automatic Start Time
+            <input type="checkbox">
+            <span class="checkmark"></span>
+        </label>
+        <form id="form-ac2" action="/add-activity" method="POST" class="total-time-group">
+
+            <div class = "total-time">
+                <input type ="text" name="total_time" placeholder="total time">
+            </div>
+
+
+            <div class="value">
+                <div class="some-class">
+                    <div class="start-end-time">
+                    <input type="text" name="start_time" placeholder="start time">
+                        <br>
+                    <input type="text" name="end_time" placeholder="end time">
+                    </div>
+                </div>
+            </div>
+            <button class="btn-add-activity" type="submit">Add activity</button>
+        </form>
+
+    </div>
+
+
+
+
+</div>
+<footer>
+    <div class="container footer-container">
+        <div class="dropup">
+            <button class="dropbtn"><i class="fas fa-clock"></i></button>
+            <div class="dropup-content">
+                <a href="#">Add activity</a>
+                <a href="#">Recent Activities</a>
+                <a href="#">Unfinished activities</a>
+            </div>
+        </div>
+    <i class="fas fa-layer-group"></i>
+        <div class="dropup">
+        <button class="dropbtn"><i class="fas fa-chart-line"></i></button>
+        <div class="dropup-content-second">
+            <a href="#">Daily report</a>
+            <a href="#">Monthly report</a>
+            <a href="#">Overall reports</a>
+        </div>
+        </div>
+    <i class="fas fa-user-astronaut"></i>
+    </div>
+</footer>
+
+
+
+</body>
+
+</html>

@@ -37,6 +37,7 @@ public class SecurityController {
         User user = new User(email, password);
         userRepository.addUser(user);
         return "login";
+
     }
 
     @PostMapping("/login")

@@ -11,8 +11,8 @@ public class Activity {
     private Timestamp timeStarted;
     private Timestamp timeEnded;
 
-    public Activity(UUID category_id, UUID user_id, Timestamp timeStarted) {
-        this(0, category_id, user_id, null, timeStarted, null);
+    public Activity(UUID category_id, UUID user_id, Timestamp timeStarted, Timestamp timeEnded) {
+        this(0, category_id, user_id, null, timeStarted, timeEnded);
     }
     public Activity(UUID category_id, UUID user_id, String description, Timestamp timeStarted) {
         this(0, category_id, user_id, description, timeStarted, null);

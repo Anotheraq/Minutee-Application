@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.util.List;
 import java.util.UUID;
-
+@Repository
 public class ActivityRepository implements IActivityRepository {
     private JdbcTemplate jdbcTemplate;
     @Autowired
@@ -27,13 +29,13 @@ public class ActivityRepository implements IActivityRepository {
     }
 
     @Override
-    public Activity getActivities(UUID user_id) {
+    public List<Activity> getActivities(UUID user_id) {
 
-        Activity activity;
+        List<Activity> activity;
         String sql = "select * from activity where user_id = " + user_id + ";";
 
         try {
-            activity = jdbcTemplate.queryForObject(sql, (rs, rowNum) -> new Activity(rs.getInt("activity_id"),
+            activity = jdbcTemplate.query(sql, (rs, rowNum) -> new Activity(rs.getInt("activity_id"),
                     rs.getObject("category_id", java.util.UUID.class),
                     rs.getObject("user_id", java.util.UUID.class),
                     rs.getString("description"),

@@ -16,4 +16,8 @@ public class DefaultController {
     public String register() {
         return "signup";
     }
+    @GetMapping("/add-activity")
+    public String activities() {
+        return "add-activity";
+    }
 }
