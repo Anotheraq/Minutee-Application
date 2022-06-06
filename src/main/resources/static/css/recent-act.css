@@ -129,7 +129,7 @@
 
     /* The actual timeline (the vertical ruler) */
     .timeline {
-        position: fixed;
+        position: absolute;
         left: 52px;
         margin: 0 auto;
         margin-right: 10px;

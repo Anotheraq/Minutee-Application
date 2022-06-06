@@ -14,6 +14,7 @@
     <script th:src="@{js/scrypt.js}" defer></script>
     <script th:src="@{js/checkbox.js}" defer></script>
     <script th:src="@{js/test.js}" defer></script>
+    <script th:src="@{js/redirect.js}" defer></script>
     <link rel="stylesheet" th:href="@{css/utilities.css}">
 </head>
 <body>
@@ -28,47 +29,13 @@
 </div>
 
     <table class="timeline">
-        <tr class="container left">
+        <tr th:each="activity: ${activities}" class="container left">
             <td class="content">
-                <h2 class="activity-header"> Activity-1<span>&#8942;</span></h2>
-                <p class="activity-description">Some useless description, description and more</p>
+                <h2 th:text="${activity.category_id}" class="activity-header"> <span>&#8942;</span></h2>
+                <p th:text="${activity.description}" class="activity-description"></p>
                 <div class="activity-time">
-                    <div><i class="fas fa-clock"></i> 09:00</div>
-                    <div><i class="fas fa-calendar"></i> 06 Jun 2022</div>
+                    <div th:text="${activity.timeStarted}" ><i class="fas fa-clock"></i></div>
                 </div>
-            </td>
-        </tr>
-
-        <tr class="container left">
-            <td class="content">
-                <h2 class="activity-header">Activity-2<span>&#8942;</span></h2>
-                <p class="activity-description">Some useless description</p>
-                <div class="activity-time">
-                    <div><i class="fas fa-clock"></i> 09:00</div>
-                    <div><i class="fas fa-calendar"></i> 06 Jun 2022</div>
-                </div>
-            </td>
-        </tr>
-
-        <tr class="container left">
-            <td class="content">
-                <h2 class="activity-header">Activity-2<span>&#8942;</span></h2>
-                <p class="activity-description">Some useless description</p>
-                <div class="activity-time">
-                    <div><i class="fas fa-clock"></i> 09:00</div>
-                    <div><i class="fas fa-calendar"></i> 06 Jun 2022</div>
-                </div>
-            </td>
-        </tr>
-
-        <tr class="container left">
-            <td class="content">
-                <h2 class="activity-header">Activity-2<span>&#8942;</span></h2>
-                <p class="activity-description">Some useless description</p>
-                <div class="activity-time">
-                <div><i class="fas fa-clock"></i> 09:00</div>
-                <div><i class="fas fa-calendar"></i> 06 Jun 2022</div>
-            </div>
             </td>
         </tr>
     </table>
@@ -81,9 +48,9 @@
         <div class="dropup">
             <button class="dropbtn"><i class="fas fa-clock"></i></button>
             <div class="dropup-content">
-                <a href="add-activity.html">Add activity</a>
+                <a onclick="redirect('add-activity')">Add activity</a>
                 <a href="#">Recent Activities</a>
-                <a href="activities-in-progress.html">Unfinished activities</a>
+                <a onclick="redirect('activities-in-progress')">Unfinished activities</a>
             </div>
         </div>
     <i class="fas fa-layer-group"></i>

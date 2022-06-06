@@ -7,18 +7,13 @@ import jdk.jfr.Frequency;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 
@@ -27,6 +22,24 @@ public class ActivityController {
     @Autowired
     ActivityRepository activityRepository;
 
+    @GetMapping("/recent-activities")
+    public String recentActivities(Model model, @SessionAttribute(name="user", required = false) User user) {
+        if(user == null){
+            return "login";
+        }
+        List<Activity> activityList = activityRepository.getActivities(user.getId());
+        model.addAttribute("activities", activityList);
+        return "recent-activities";
+    }
+    @GetMapping("/activities-in-progress")
+    public String activitiesInProgress(Model model, @SessionAttribute(name="user", required = false) User user) {
+        if(user == null){
+            return "login";
+        }
+        List<Activity> activityList = activityRepository.getUnifnishedActivities(user.getId());
+        model.addAttribute("activities", activityList);
+        return "activities-in-progress";
+    }
     @PostMapping("/add-activity")
     public String activities(@RequestParam(name="description", required = false )String description,
                              @RequestParam(name="total_time", required = false )Integer totalTime,

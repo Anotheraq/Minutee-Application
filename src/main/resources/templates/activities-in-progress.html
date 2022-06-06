@@ -15,6 +15,7 @@
     <script th:src="@{js/scrypt.js}" defer></script>
     <script th:src="@{js/checkbox.js}" defer></script>
     <script th:src="@{js/test.js}" defer></script>
+    <script th:src="@{js/redirect.js}" defer></script>
     <link rel="stylesheet" th:href="@{css/utilities.css}">
 
 </head>
@@ -28,90 +29,34 @@
         Here you can see your activities in progress.
     </div>
 </div>
-
-<button class="accordion">Activity 1</button>
-<div class="panel">
-    <div class="upper-menu">
-    <span class="label category">Category</span>
-        <div class="dropdown">
-            <button class="dropbutton">&#8942;</button>
-            <div class="dropdown-content">
-                <a href="#">Edit</a>
+<table>
+    <tr th:each="activity: ${activities}">
+        <button th:text="${activity.category_id}" class="accordion"></button>
+        <div class="panel">
+            <div class="upper-menu">
+                <span class="label category">Category</span>
+                <div class="dropdown">
+                    <button class="dropbutton">&#8942;</button>
+                    <div class="dropdown-content">
+                        <a href="#">Edit</a>
+                    </div>
+                </div>
+            </div>
+            <p th:text="${activity.description}" class="activity-description"></p>
+            <div class="activity-time">
+                <div th:text="${activity.timeStarted}" ><i class="fas fa-clock"></i></div>
             </div>
         </div>
-    </div>
-    <p class="activity-description">Some useless desmfkwoe kfopwek opfkwepok fopwkeop fkopwek fopwekcription</p>
-    <div class="activity-time">
-        <div><i class="fas fa-clock"></i> 09:00</div>
-        <div><i class="fas fa-calendar"></i> 06 Jun 2022</div>
-    </div>
-</div>
-
-<button class="accordion">Activity 2</button>
-<div class="panel">
-    <div class="upper-menu">
-    <span class="label category2">Category2</span>
-        <div class="dropdown">
-            <button class="dropbutton">&#8942;</button>
-            <div class="dropdown-content">
-                <a href="#">Edit</a>
-            </div>
-        </div>
-    </div>
-    <p class="activity-description">Some useless description</p>
-    <div class="activity-time">
-        <div><i class="fas fa-clock"></i> 09:00</div>
-        <div><i class="fas fa-calendar"></i> 06 Jun 2022</div>
-    </div>
-</div>
-
-<button class="accordion">Activity 3</button>
-<div class="panel">
-    <div class="upper-menu">
-    <span class="label category4">Category4</span>
-        <div class="dropdown">
-            <button class="dropbutton">&#8942;</button>
-            <div class="dropdown-content">
-                <a href="#">Edit</a>
-            </div>
-        </div>
-    </div>
-    <p class="activity-description">Some useless description</p>
-    <div class="activity-time">
-        <div><i class="fas fa-clock"></i> 09:00</div>
-        <div><i class="fas fa-calendar"></i> 06 Jun 2022</div>
-    </div>
-</div>
-
-<button class="accordion">Activity 3</button>
-<div class="panel">
-    <div class="upper-menu">
-    <span class="label category4">Category4</span>
-        <div class="dropdown">
-            <button class="dropbutton">&#8942;</button>
-            <div class="dropdown-content">
-                <a href="#">Edit</a>
-            </div>
-        </div>
-
-    </div>
-    <p class="activity-description">Some useless description</p>
-    <div class="activity-time">
-        <div><i class="fas fa-clock"></i> 09:00</div>
-        <div><i class="fas fa-calendar"></i> 06 Jun 2022</div>
-    </div>
-</div>
-
-
-
+    </tr>
+</table>
 
 <footer>
     <div class="footer-cont">
         <div class="dropup">
             <button class="dropbtn"><i class="fas fa-clock"></i></button>
             <div class="dropup-content">
-                <a href="add-activity.html">Add activity</a>
-                <a href="recent-activities.html">Recent Activities</a>
+                <a onclick="redirect('add-activity')">Add activity</a>
+                <a onclick="redirect('recent-activities')">Recent Activities</a>
                 <a href="#">Unfinished activities</a>
             </div>
         </div>

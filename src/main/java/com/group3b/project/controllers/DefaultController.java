@@ -19,6 +19,7 @@ public class DefaultController {
     public String register() {
         return "signup";
     }
+
     @GetMapping("/add-activity")
     public String activities(@SessionAttribute(name="user", required = false) User user) {
         if(user == null){
