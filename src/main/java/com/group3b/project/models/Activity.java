@@ -11,11 +11,12 @@ public class Activity {
     private Timestamp timeStarted;
     private Timestamp timeEnded;
 
+
     public Activity(UUID category_id, UUID user_id, Timestamp timeStarted, Timestamp timeEnded) {
         this(0, category_id, user_id, null, timeStarted, timeEnded);
     }
     public Activity(UUID category_id, UUID user_id, String description, Timestamp timeStarted) {
-        this(0, category_id, user_id, description, timeStarted, null);
+        this(0, category_id, user_id, description, timeStarted, Timestamp.valueOf("1111-11-11 11:11:11"));
     }
 
     public Activity(UUID category_id, UUID user_id, String description, Timestamp timeStarted, Timestamp timeEnded) {

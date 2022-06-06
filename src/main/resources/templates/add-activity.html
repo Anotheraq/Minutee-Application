@@ -9,105 +9,91 @@
 
     <meta name="description" content="The best way to organize your time and control everything in your life">
     <meta name="keywords" content="time, organization, management, workflow">
-    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js}"></script>
-    <script th:src="@{https://kit.fontawesome.com/201024f681.js}" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/201024f681.js" crossorigin="anonymous"></script>
     <script th:src="@{js/scrypt.js}" defer></script>
     <script th:src="@{js/checkbox.js}" defer></script>
     <script th:src="@{js/test.js}" defer></script>
-    <script th:src="@{js/submitforms.js}" defer></script>
 
 </head>
 <body>
-<div class = "content-wrapper">
-    <div class="upper-text">
-        Add Activity
-    </div>
+<div class="upper-text">
+    Add Activity
+</div>
+<div class="additional-text">
+    Here you can add your activity
+</div>
 
-    <div class="additional-text">
-        Here you can add your activity
-    </div>
-    <br>
-
+<form class = "content-wrapper" id="form1" action="add-activity" method="POST">
     <div class="category-container">
         CATEGORY
-        <form name="form1" id="form1" action="/action.java">
-
-            <select name="subject" id="category">
+        <select name="subject" id="category" class="category-select">
             <option value="" selected="selected">Choose category</option>
         </select>
-
-        </form>
     </div>
-<br>
+
     <div class="description">
         DESCRIPTION (OPTIONAL)
-        <form id="form-ac1" action="/add-activity" method="POST" class="description-group">
-            <input name="description" type="text" placeholder="Provide description">
-        </form>
+        <div>
+            <input name="description" class="description-text" type="text" placeholder="Provide description">
+        </div>
     </div>
-<br>
+
+    <div class ="time-header">TIME</div>
+
     <div class="choose-time">
-        TIME
-        <br>
         <label class="checkbox">Enter Total Time
-            <input type="checkbox" name="sg2">
+            <input type="radio" name="sg" value="1">
             <span class="checkmark"></span>
         </label>
-        <br>
         <label class="checkbox">Enter Start/End Time
-            <input type="checkbox" name="sg">
+            <input type="radio" name="sg" value="2">
             <span class="checkmark"></span>
         </label>
-        <br>
         <label class="checkbox">Automatic Start Time
-            <input type="checkbox">
+            <input type="radio" name="sg" value="autoTime">
             <span class="checkmark"></span>
         </label>
-        <form id="form-ac2" action="/add-activity" method="POST" class="total-time-group">
-
-            <div class = "total-time">
-                <input type ="text" name="total_time" placeholder="total time">
-            </div>
 
 
-            <div class="value">
-                <div class="some-class">
-                    <div class="start-end-time">
-                    <input type="text" name="start_time" placeholder="start time">
-                        <br>
-                    <input type="text" name="end_time" placeholder="end time">
-                    </div>
+        <div class = "total-time">
+            <input name="total_time" type ="text" placeholder="Enter  total time" class="total-time-input">
+        </div>
+
+        <div class="value">
+            <div class="some-class">
+                <div class="start-end-time">
+                    <input name="start_time" type="text" placeholder="Enter start time" class="value-input">
+
+                    <input name="end_time"  placeholder="Enter end time" class="value-input">
                 </div>
             </div>
-            <button class="btn-add-activity" type="submit">Add activity</button>
-        </form>
-
+        </div>
     </div>
 
+    <button class="btn-add-activity" type="submit">Add activity</button>
 
-
-
-</div>
+</form>
 <footer>
     <div class="container footer-container">
         <div class="dropup">
             <button class="dropbtn"><i class="fas fa-clock"></i></button>
             <div class="dropup-content">
                 <a href="#">Add activity</a>
-                <a href="#">Recent Activities</a>
-                <a href="#">Unfinished activities</a>
+                <a href="recent-activities.html">Recent Activities</a>
+                <a href="activities-in-progress.html">Unfinished activities</a>
             </div>
         </div>
-    <i class="fas fa-layer-group"></i>
+        <i class="fas fa-layer-group"></i>
         <div class="dropup">
-        <button class="dropbtn"><i class="fas fa-chart-line"></i></button>
-        <div class="dropup-content-second">
-            <a href="#">Daily report</a>
-            <a href="#">Monthly report</a>
-            <a href="#">Overall reports</a>
+            <button class="dropbtn"><i class="fas fa-chart-line"></i></button>
+            <div class="dropup-content-second">
+                <a href="#">Daily report</a>
+                <a href="#">Monthly report</a>
+                <a href="#">Overall reports</a>
+            </div>
         </div>
-        </div>
-    <i class="fas fa-user-astronaut"></i>
+        <i class="fas fa-user-astronaut"></i>
     </div>
 </footer>
 

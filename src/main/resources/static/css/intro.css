@@ -15,6 +15,8 @@ body {
         linear-gradient(to top left, transparent 50%, #FFFFFF 50%)
         right 0px top 0px/50% 300% no-repeat#678B74;
     background-position: 0px 0px;
+    width: 100%;
+    height: 100vh;
 }
 
 h1 {
@@ -30,14 +32,14 @@ h2 {
 /* Leftside Stylings */
 .leftside {
     width: 50vw;
-    height: 100vh;
+    height: 100%;
     font-family: 'Jura', sans-serif;
 }
 
 /* Rightside Stylings */
 .rightside {
     width: 50vw;
-    height: 100vh;
+    height: 100%;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -102,3 +104,37 @@ footer {
 footer h2 {
     font-size: 16px;
 }
+
+@media (max-width: 428px){
+
+    body{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #678B74;
+        margin: initial;
+    }
+
+    .leftside, .rightside {
+        background: #678B74;
+        width: initial;
+    }
+
+    .user-input-window {
+        width: initial;
+        height: initial;
+    }
+
+    .leftside {
+        height: 30%;
+        align-items: flex-end;
+        margin-bottom: 30px;
+    }
+
+    .rightside {
+        height: 70%;
+        align-items: flex-start;
+    }
+}
+
+

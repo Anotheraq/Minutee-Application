@@ -1,18 +1,18 @@
-var categoryObject = {
+const categoryObject = {
     "ICON1": {},
     "ICON2": {}
-}
+};
 window.onload = function() {
-    var categorySel = document.getElementById("category");
-    for (var x in categoryObject) {
+    const categorySel = document.getElementById("category");
+    for (const x in categoryObject) {
         categorySel.options[categorySel.options.length] = new Option(x, x);
     }
 }
 
 $(document).ready(function() {
-    var visible = false;
-    $('input[name="sg"]').click(function() {
-        var divs = $('div.some-class');
+    let visible = false;
+    $('input[value="2"]').click(function(e) {
+        const divs = $('div.some-class');
         if (visible) {
             divs.each(function() {
                 this.style.display = 'none';
@@ -26,4 +26,7 @@ $(document).ready(function() {
             visible = true;
         }
     });
+
+
+
 });

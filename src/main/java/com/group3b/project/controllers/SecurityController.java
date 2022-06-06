@@ -7,10 +7,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
+import javax.servlet.http.HttpSession;
+
 @Controller
+@SessionAttributes("user")
 public class SecurityController {
     @Autowired
     UserRepository userRepository;
+//    @Autowired
+//    HttpSession httpSession;
 
     @PostMapping("/signup")
     public String register(
@@ -44,7 +52,9 @@ public class SecurityController {
     public String login(
             @RequestParam("email") String email,
             @RequestParam("password") String password,
-            Model model) {
+            Model model,
+            @ModelAttribute("user") User user) {
+
 
         if (email.isEmpty() || password.isEmpty()) {
             model.addAttribute("message", "Please fill in all blanks!");
@@ -62,8 +72,21 @@ public class SecurityController {
             model.addAttribute("message", "Wrong password");
             return "login";
         }
+        System.out.println(result.getId());
+//        user = result;
+        user.setId(result.getId());
+        user.setPassword(result.getPassword());
+        user.setEmail(result.getEmail());
+        System.out.println(user.getId());
+//        httpSession.setAttribute("user", result);
+//
+//        User user = (User) httpSession.getAttribute("user");
+//        System.out.println(user.getPassword());
+        return "add-activity";
+    }
 
-        model.addAttribute("message", "You logged in(WIP)");
-        return "login";
+    @ModelAttribute("user")
+    public User user() {
+        return new User();
     }
 }

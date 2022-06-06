@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recent activities</title>
+    <link rel="stylesheet" th:href="@{css/recent-act.css}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="The best way to organize your time and control everything in your life">
+    <meta name="keywords" content="time, organization, management, workflow">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/47ca63bf68.js" crossorigin="anonymous"></script>
+    <script th:src="@{js/scrypt.js}" defer></script>
+    <script th:src="@{js/checkbox.js}" defer></script>
+    <script th:src="@{js/test.js}" defer></script>
+    <link rel="stylesheet" th:href="@{css/utilities.css}">
+</head>
+<body>
+<div class = "content-wrapper">
+    <div class="upper-text">
+        Recent Activities
+    </div>
+
+    <div class="additional-text">
+        Here you can see your history.
+    </div>
+</div>
+
+    <table class="timeline">
+        <tr class="container left">
+            <td class="content">
+                <h2 class="activity-header"> Activity-1<span>&#8942;</span></h2>
+                <p class="activity-description">Some useless description, description and more</p>
+                <div class="activity-time">
+                    <div><i class="fas fa-clock"></i> 09:00</div>
+                    <div><i class="fas fa-calendar"></i> 06 Jun 2022</div>
+                </div>
+            </td>
+        </tr>
+
+        <tr class="container left">
+            <td class="content">
+                <h2 class="activity-header">Activity-2<span>&#8942;</span></h2>
+                <p class="activity-description">Some useless description</p>
+                <div class="activity-time">
+                    <div><i class="fas fa-clock"></i> 09:00</div>
+                    <div><i class="fas fa-calendar"></i> 06 Jun 2022</div>
+                </div>
+            </td>
+        </tr>
+
+        <tr class="container left">
+            <td class="content">
+                <h2 class="activity-header">Activity-2<span>&#8942;</span></h2>
+                <p class="activity-description">Some useless description</p>
+                <div class="activity-time">
+                    <div><i class="fas fa-clock"></i> 09:00</div>
+                    <div><i class="fas fa-calendar"></i> 06 Jun 2022</div>
+                </div>
+            </td>
+        </tr>
+
+        <tr class="container left">
+            <td class="content">
+                <h2 class="activity-header">Activity-2<span>&#8942;</span></h2>
+                <p class="activity-description">Some useless description</p>
+                <div class="activity-time">
+                <div><i class="fas fa-clock"></i> 09:00</div>
+                <div><i class="fas fa-calendar"></i> 06 Jun 2022</div>
+            </div>
+            </td>
+        </tr>
+    </table>
+
+
+
+
+<footer>
+    <div class="footer-cont">
+        <div class="dropup">
+            <button class="dropbtn"><i class="fas fa-clock"></i></button>
+            <div class="dropup-content">
+                <a href="add-activity.html">Add activity</a>
+                <a href="#">Recent Activities</a>
+                <a href="activities-in-progress.html">Unfinished activities</a>
+            </div>
+        </div>
+    <i class="fas fa-layer-group"></i>
+        <div class="dropup">
+        <button class="dropbtn"><i class="fas fa-chart-line"></i></button>
+        <div class="dropup-content-second">
+            <a href="#">Daily report</a>
+            <a href="#">Monthly report</a>
+            <a href="#">Overall reports</a>
+        </div>
+        </div>
+    <i class="fas fa-user-astronaut"></i>
+    </div>
+</footer>
+
+
+
+</body>
+
+</html>

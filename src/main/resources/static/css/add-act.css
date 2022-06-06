@@ -1,6 +1,6 @@
-
 @media (max-width: 428px) {
     *{
+
         font-family: 'Poppins', sans-serif;
     }
 
@@ -120,11 +120,14 @@
         padding-left: 35px;
         margin-bottom: 12px;
         cursor: pointer;
-        font-size: 22px;
+        font-size: 18px;
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
+
+
+
     }
 
     /* Hide the browser's default checkbox */
@@ -204,5 +207,160 @@
         width: 100%;
     }
 
+    .upper-text{
+        /* Add Activity */
+
+
+        position: absolute;
+        width: 145px;
+        height: 36px;
+        left: 15px;
+        top: 12px;
+
+        font-family: 'Poppins', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 36px;
+        /* identical to box height */
+
+
+        color: #000000;
+    }
+
+    .additional-text{
+        /* Here you can add your activity. */
+
+
+        position: absolute;
+        width: 248px;
+        height: 24px;
+        left: 15px;
+        top: 39px;
+
+        font-family: 'Poppins', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        /* identical to box height */
+
+
+        color: #7B7B7B;
+    }
+
+    .category-container{
+        /* CATEGORY */
+
+
+        position: absolute;
+        width: 86px;
+        height: 24px;
+        left: 15px;
+        top: 90px;
+
+        font-family: 'Poppins', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 24px;
+        /* identical to box height */
+
+
+        color: #000000;
+    }
+
+    .description{
+        /* DESCRIPTION (OPTIONAL) */
+
+
+        position: absolute;
+        left: 15px;
+        top: 190px;
+        font-family: 'Poppins', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 24px;
+        /* identical to box height */
+
+
+        color: #000000;
+    }
+
+    .category-select{
+        width: 360px;
+        height: 40px;
+        border-top: inherit;
+        border-right: inherit;
+        border-left: inherit;
+        font-size: 16px;
+        color: #7b7b7b;
+    }
+
+    .description-text{
+        width: 360px;
+        height: 40px;
+        border-top: inherit;
+        border-right: inherit;
+        border-left: inherit;
+        font-size: 16px;
+        color: #7b7b7b;
+    }
+
+    .time-header{
+        /* TIME */
+
+
+        position: absolute;
+        width: 36px;
+        height: 24px;
+        left: 15px;
+        top: 300px;
+
+        font-family: 'Poppins', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 24px;
+        /* identical to box height */
+
+
+        color: #000000;
+    }
+
+    .btn-add-activity{
+        margin: 0;
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .total-time-input, .value-input{
+        width: 360px;
+        height: 40px;
+        border-top: inherit;
+        border-right: inherit;
+        border-left: inherit;
+
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        /* identical to box height */
+
+
+        color: #7B7B7B;
+
+    }
+
+    .choose-time{
+        position: absolute;
+        top: 340px;
+        margin-left: 10px;
+
+    }
 
 }
