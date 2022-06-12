@@ -20,36 +20,37 @@
 
 </head>
 <body>
-<div class = "content-wrapper">
-    <div class="upper-text">
-        Activities in progress
-    </div>
+<main>
+    <div class = "content-wrapper">
+        <div class="upper-text">
+            Activities in progress
+        </div>
 
-    <div class="additional-text">
-        Here you can see your activities in progress.
+        <div class="additional-text">
+            Here you can see your activities in progress.
+        </div>
     </div>
-</div>
-<table>
-    <tr th:each="activity: ${activities}">
-        <button th:text="${activity.category_id}" class="accordion"></button>
-        <div class="panel">
-            <div class="upper-menu">
-                <span class="label category">Category</span>
-                <div class="dropdown">
-                    <button class="dropbutton">&#8942;</button>
-                    <div class="dropdown-content">
-                        <a href="#">Edit</a>
+    <table>
+        <tr th:each="activity: ${activities}">
+            <button th:text="${activity.category_id}" class="accordion"></button>
+            <div class="panel">
+                <div class="upper-menu">
+                    <span class="label category">Category</span>
+                    <div class="dropdown">
+                        <button class="dropbutton">&#8942;</button>
+                        <div class="dropdown-content">
+                            <a href="#">Edit</a>
+                        </div>
                     </div>
                 </div>
+                <p th:text="${activity.description}" class="activity-description"></p>
+                <div class="activity-time">
+                    <div th:text="${activity.timeStarted}" ><i class="fas fa-clock"></i></div>
+                </div>
             </div>
-            <p th:text="${activity.description}" class="activity-description"></p>
-            <div class="activity-time">
-                <div th:text="${activity.timeStarted}" ><i class="fas fa-clock"></i></div>
-            </div>
-        </div>
-    </tr>
-</table>
-
+        </tr>
+    </table>
+</main>
 <footer>
     <div class="footer-cont">
         <div class="dropup">

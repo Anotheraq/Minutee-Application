@@ -18,7 +18,8 @@
     <link rel="stylesheet" th:href="@{css/utilities.css}">
 </head>
 <body>
-<div class = "content-wrapper">
+<main>
+    <div class = "content-wrapper">
     <div class="upper-text">
         Recent Activities
     </div>
@@ -26,7 +27,7 @@
     <div class="additional-text">
         Here you can see your history.
     </div>
-</div>
+    </div>
 
     <table class="timeline">
         <tr th:each="activity: ${activities}" class="container left">
@@ -39,7 +40,7 @@
             </td>
         </tr>
     </table>
-
+</main>
 
 
 

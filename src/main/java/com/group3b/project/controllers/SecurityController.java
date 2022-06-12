@@ -17,8 +17,6 @@ import javax.servlet.http.HttpSession;
 public class SecurityController {
     @Autowired
     UserRepository userRepository;
-//    @Autowired
-//    HttpSession httpSession;
 
     @PostMapping("/signup")
     public String register(
@@ -72,16 +70,11 @@ public class SecurityController {
             model.addAttribute("message", "Wrong password");
             return "login";
         }
-        System.out.println(result.getId());
-//        user = result;
+
         user.setId(result.getId());
         user.setPassword(result.getPassword());
         user.setEmail(result.getEmail());
-        System.out.println(user.getId());
-//        httpSession.setAttribute("user", result);
-//
-//        User user = (User) httpSession.getAttribute("user");
-//        System.out.println(user.getPassword());
+
         return "add-activity";
     }
 

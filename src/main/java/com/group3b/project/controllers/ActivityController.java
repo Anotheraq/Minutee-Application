@@ -66,15 +66,7 @@ public class ActivityController {
             startedEndedHandler(timeStarted,timeEnded,description,id);
         }else if(timeAutoBox != null&& timeAutoBox.equals("autoTime")){
             autoHandler(description,id);
-            System.out.println("Hui");
         }
-//        if(totalTime.isPresent()){
-//            totalTimeHandler(totalTime.get(),id);
-//        }else if(timeStarted.isPresent() && timeEnded.isPresent()){
-//            startedEndedHandler(timeStarted.get(),timeEnded.get(),id);
-//        }else if(timeAutoBox!=null){
-//            System.out.println("Hui");
-//        }
 
         return "add-activity";
     }

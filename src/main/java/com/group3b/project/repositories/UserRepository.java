@@ -1,6 +1,7 @@
 package com.group3b.project.repositories;
 
 import com.group3b.project.models.User;
+import netscape.javascript.JSObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -39,4 +40,6 @@ public class UserRepository implements IUserRepository{
         }
         return user;
     }
+
+
 }

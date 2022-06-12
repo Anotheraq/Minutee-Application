@@ -27,4 +27,5 @@ public class DefaultController {
         }
         return "add-activity";
     }
+
 }
