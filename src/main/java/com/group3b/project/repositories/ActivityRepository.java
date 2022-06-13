@@ -1,23 +1,17 @@
 package com.group3b.project.repositories;
 
-import com.group3b.project.models.Chart;
 import com.group3b.project.models.Activity;
 
-import com.group3b.project.models.User;
-import netscape.javascript.JSObject;
-import org.json.JSONObject;
+import com.group3b.project.models.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
 import javax.sql.DataSource;
 
-import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.util.Calendar;
+
 import java.util.List;
 import java.util.UUID;
 @Repository
@@ -40,7 +34,9 @@ public class ActivityRepository implements IActivityRepository {
     public List<Activity> getActivities(UUID user_id) {
 
         List<Activity> activity;
-        String sql = "select * from activity where user_id = '" + user_id + "';";
+        String sql = "select  activity_id, a.category_id as category_id, user_id, description, time_ended, time_started, color, title " +
+                "from activity a join category c on a.category_id = c.category_id " +
+                "where user_id = '" + user_id + "';";
 
         try {
             activity = jdbcTemplate.query(sql, (rs, rowNum) -> new Activity(rs.getInt("activity_id"),
@@ -48,7 +44,12 @@ public class ActivityRepository implements IActivityRepository {
                     rs.getObject("user_id", java.util.UUID.class),
                     rs.getString("description"),
                     rs.getTimestamp("time_started"),
-                    rs.getTimestamp("time_ended")));
+                    rs.getTimestamp("time_ended"),
+                    new Category(
+                            rs.getObject("category_id", java.util.UUID.class),
+                            rs.getString("color"),
+                            rs.getString("title")
+                    )));
         }catch(EmptyResultDataAccessException e){
             return null;
         }
@@ -59,7 +60,8 @@ public class ActivityRepository implements IActivityRepository {
     public List<Activity> getUnifnishedActivities(UUID user_id) {
 
         List<Activity> activity;
-        String sql = "SELECT * FROM activity WHERE user_id = '" + user_id + "' and time_ended = '1111-11-11 11:11:11';";
+        String sql = "SELECT activity_id, a.category_id as category_id, user_id, description, time_ended, time_started, color, title " +
+                "from activity a join category c on a.category_id = c.category_id  WHERE user_id = '" + user_id + "' and time_ended = '1111-11-11 11:11:11';";
 
         try{
             activity = jdbcTemplate.query(sql, (rs, rowNum) -> new Activity(rs.getInt("activity_id"),
@@ -67,7 +69,12 @@ public class ActivityRepository implements IActivityRepository {
                     rs.getObject("user_id", java.util.UUID.class),
                     rs.getString("description"),
                     rs.getTimestamp("time_started"),
-                    rs.getTimestamp("time_ended")));
+                    rs.getTimestamp("time_ended"),
+                    new Category(
+                            rs.getObject("category_id", java.util.UUID.class),
+                            rs.getString("color"),
+                            rs.getString("title")
+                    )));
         }catch(EmptyResultDataAccessException e){
             return null;
         }

@@ -1,6 +1,5 @@
 package com.group3b.project.repositories;
 
-import com.group3b.project.models.Activity;
 import com.group3b.project.models.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -28,6 +27,21 @@ public class CategoryRepository implements ICategoryRepository{
 
         try {
             category = jdbcTemplate.query(sql, (rs, rowNum) -> new Category(rs.getObject("category_id", java.util.UUID.class),
+                    rs.getString("color"),
+                    rs.getString("title")));
+        }catch(EmptyResultDataAccessException e){
+            return null;
+        }
+        return category;
+    }
+
+    @Override
+    public Category getCategoryByID(UUID category_id) {
+        Category  category;
+        String sql = "SELECT * FROM category where category_id = '"+category_id+"';";
+
+        try {
+            category = jdbcTemplate.queryForObject(sql, (rs, rowNum) -> new Category(rs.getObject("category_id", java.util.UUID.class),
                     rs.getString("color"),
                     rs.getString("title")));
         }catch(EmptyResultDataAccessException e){

@@ -32,10 +32,10 @@
     <table class="timeline">
         <tr th:each="activity: ${activities}" class="container left">
             <td class="content">
-                <h2 th:text="${activity.category_id}" class="activity-header"> <span>&#8942;</span></h2>
+                <h2 th:text="${activity.category.title}" class="activity-header"> <span>&#8942;</span></h2>
                 <p th:text="${activity.description}" class="activity-description"></p>
                 <div class="activity-time">
-                    <div th:text="${activity.timeStarted}" ><i class="fas fa-clock"></i></div>
+                    <div th:text="${#strings.replace(#strings.abbreviate(activity.timeStarted,19),'...','')}" ><i class="fas fa-clock"></i></div>
                 </div>
             </td>
         </tr>

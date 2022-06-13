@@ -2,6 +2,7 @@ package com.group3b.project.repositories;
 
 import com.group3b.project.models.Chart;
 import com.group3b.project.models.User;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -104,12 +105,13 @@ public class ChartRepository implements IChartRepository {
         }
         return json;
     }
-    public JSONObject getTimeActivityOneDay(User user){
+    public JSONArray getTimeActivityOneDay(User user){
         List<Chart> chart;
         Calendar cal1 = Calendar.getInstance();
         Calendar cal2 = Calendar.getInstance();
         JSONObject json = new JSONObject();
-
+        JSONObject json1;
+        JSONArray jsonArray = new JSONArray();
 
         String sql = "SELECT c.title, time_ended, time_started " +
                 "FROM activity a join category c on a.category_id = c.category_id " +
@@ -117,30 +119,30 @@ public class ChartRepository implements IChartRepository {
                 "and time_ended BETWEEN date_trunc('day', current_date)::timestamp and (date_trunc('day', current_date) + interval '1 day' - interval '1 ms')::timestamp;";
 
 
-        long secInDay = 86400;
         try{
             chart = jdbcTemplate.query(sql, (rs, rowNum) -> new Chart(rs.getString("title"),
                     rs.getTimestamp("time_started"),
                     rs.getTimestamp("time_ended")));
         }catch(EmptyResultDataAccessException e){
-            return json.put("idle", secInDay);
+            return null;
         }
 
         for(Chart ac: chart){
+            json1 = new JSONObject();
             cal1.setTime(ac.getTimeStarted());
             cal2.setTime(ac.getTimeEnded());
             if(cal1.get(Calendar.DAY_OF_YEAR) < cal2.get(Calendar.DAY_OF_YEAR)) {
                 LocalDate localDate = LocalDate.now();
                 ac.setTimeStarted(Timestamp.valueOf(localDate + " 00:00:00"));
+                cal1.setTime(ac.getTimeStarted());
             }
             ac.setTotalTime((ac.getTimeEnded().getTime() - ac.getTimeStarted().getTime())/1000);
-            secInDay -= ac.getTotalTime();
-            json.put(ac.getTitle(), ac.getTotalTime());
-        }
-        if(secInDay > 0) {
-            json.put("idle", secInDay);
+            json1.put("ClassName", ac.getTitle());
+            json1.put("start", cal1.get(Calendar.HOUR_OF_DAY));
+            json1.put("end", cal2.get(Calendar.HOUR_OF_DAY));
+            json.put("", json1);
         }
 
-        return json;
+        return jsonArray.put(json);
     }
 }

@@ -2,6 +2,8 @@ package com.group3b.project.controllers;
 
 import com.group3b.project.models.User;
 import com.group3b.project.repositories.ChartRepository;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,22 +15,22 @@ public class ChartController {
     ChartRepository chartRepository;
 
     @GetMapping("/oneDayChart")
-    public String oneDayChart(@SessionAttribute(name="user", required = false) User user) {
-        return chartRepository.getTimeActivityOneDay(user).toString();
+    public JSONArray oneDayChart(@SessionAttribute(name="user", required = false) User user) {
+        return chartRepository.getTimeActivityOneDay(user);
     }
 
     @GetMapping("/oneWeekChart")
-    public String oneWeekChart(@SessionAttribute(name="user", required = false) User user) {
-        return chartRepository.getTimeActivityOneWeek(user).toString();
+    public JSONObject oneWeekChart(@SessionAttribute(name="user", required = false) User user) {
+        return chartRepository.getTimeActivityOneWeek(user);
     }
 
     @GetMapping("/oneMonthChart")
-    public String oneMonthChart(@SessionAttribute(name="user", required = false) User user) {
-        return chartRepository.getTimeActivityOneMonth(user).toString();
+    public JSONObject oneMonthChart(@SessionAttribute(name="user", required = false) User user) {
+        return chartRepository.getTimeActivityOneMonth(user);
     }
 
     @GetMapping("/oneYearChart")
-    public String oneYearChart(@SessionAttribute(name="user", required = false) User user) {
-        return chartRepository.getTimeActivityOneYear(user).toString();
+    public JSONObject oneYearChart(@SessionAttribute(name="user", required = false) User user) {
+        return chartRepository.getTimeActivityOneYear(user);
     }
 }

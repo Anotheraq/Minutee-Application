@@ -1,8 +1,10 @@
 package com.group3b.project.controllers;
 
 import com.group3b.project.models.Activity;
+import com.group3b.project.models.Category;
 import com.group3b.project.models.User;
 import com.group3b.project.repositories.ActivityRepository;
+import com.group3b.project.repositories.CategoryRepository;
 import jdk.jfr.Frequency;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,8 @@ import java.util.concurrent.TimeUnit;
 public class ActivityController {
     @Autowired
     ActivityRepository activityRepository;
+    @Autowired
+    CategoryRepository categoryRepository;
 
     @GetMapping("/recent-activities")
     public String recentActivities(Model model, @SessionAttribute(name="user", required = false) User user) {
@@ -52,15 +56,8 @@ public class ActivityController {
         if(user == null){
             return "login";
         }
-
         UUID id = user.getId();
-        System.out.println("desc= "+description);
-        System.out.println("totaltime= "+totalTime);
-        System.out.println("timeSt= "+timeStarted);
-        System.out.println("timeEn="+timeEnded);
-        System.out.println("timeAuto="+timeAutoBox);
         if(totalTime!=null){
-            System.out.println("qweqwewq");
             totalTimeHandler(totalTime, description, id);
         }else if(!timeStarted.isEmpty() && !timeEnded.isEmpty()){
             startedEndedHandler(timeStarted,timeEnded,description,id);
@@ -72,15 +69,17 @@ public class ActivityController {
     }
 
     private boolean autoHandler(String description, UUID user_id){
+        Category category = categoryRepository.getCategoryByID(UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454"));
         Activity activity = new Activity(UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454"),
                 user_id,
                 description,
-                new Timestamp(System.currentTimeMillis())
+                new Timestamp(System.currentTimeMillis()),
+                category
         );
         return activityRepository.addActivity(activity);
     }
     private boolean startedEndedHandler(String timeStarted, String timeEnded, String description,UUID user_id){
-        System.out.println(1);
+        Category category = categoryRepository.getCategoryByID(UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454"));
         Timestamp timestampSt =
                 Timestamp.valueOf(
                         new SimpleDateFormat("yyyy-MM-dd ")
@@ -97,19 +96,21 @@ public class ActivityController {
                 user_id,
                 description,
                 timestampSt,
-                timestampEn
+                timestampEn,
+                category
         );
         return activityRepository.addActivity(activity);
     }
     private boolean totalTimeHandler(int totalTime, String description, UUID user_id){
-        System.out.println(2);
+        Category category = categoryRepository.getCategoryByID(UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454"));
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         timestamp.setTime(timestamp.getTime() - TimeUnit.MINUTES.toMillis(totalTime));
         Activity activity = new Activity(UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454"),
                 user_id,
                 description,
                 timestamp,
-                new Timestamp(System.currentTimeMillis())
+                new Timestamp(System.currentTimeMillis()),
+                category
                 );
         return activityRepository.addActivity(activity);
     }

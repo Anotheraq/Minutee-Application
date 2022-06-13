@@ -11,25 +11,29 @@ public class Activity {
     private Timestamp timeStarted;
     private Timestamp timeEnded;
 
+    private Category category;
 
-    public Activity(UUID category_id, UUID user_id, Timestamp timeStarted, Timestamp timeEnded) {
-        this(0, category_id, user_id, null, timeStarted, timeEnded);
+    public Activity(UUID category_id, UUID user_id, Timestamp timeStarted, Timestamp timeEnded, Category category) {
+        this(0, category_id, user_id, null, timeStarted, timeEnded, category);
     }
-    public Activity(UUID category_id, UUID user_id, String description, Timestamp timeStarted) {
-        this(0, category_id, user_id, description, timeStarted, Timestamp.valueOf("1111-11-11 11:11:11"));
-    }
-
-    public Activity(UUID category_id, UUID user_id, String description, Timestamp timeStarted, Timestamp timeEnded) {
-        this(0, category_id, user_id, description, timeStarted, timeEnded);
+    public Activity(UUID category_id, UUID user_id, String description, Timestamp timeStarted, Category category) {
+        this(0, category_id, user_id, description, timeStarted, Timestamp.valueOf("1111-11-11 11:11:11"), category);
     }
 
-    public Activity(int activity_id, UUID category_id, UUID user_id, String description, Timestamp timeStarted, Timestamp timeEnded) {
+    public Activity(UUID category_id, UUID user_id, String description, Timestamp timeStarted, Timestamp timeEnded, Category category) {
+        this(0, category_id, user_id, description, timeStarted, timeEnded,null);
+    }
+    public Activity(int activity_id, UUID category_id, UUID user_id, String description, Timestamp timeStarted, Timestamp timeEnded){
+        this(activity_id, category_id, user_id, description, timeStarted, timeEnded,null);
+    }
+    public Activity(int activity_id, UUID category_id, UUID user_id, String description, Timestamp timeStarted, Timestamp timeEnded, Category category) {
         this.activity_id = activity_id;
         this.category_id = category_id;
         this.user_id = user_id;
         this.description = description;
         this.timeStarted = timeStarted;
         this.timeEnded = timeEnded;
+        this.category = category;
     }
 
 
@@ -79,5 +83,13 @@ public class Activity {
 
     public void setTimeEnded(Timestamp timeEnded) {
         this.timeEnded = timeEnded;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
