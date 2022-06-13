@@ -11,9 +11,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -25,10 +28,11 @@ public class ChartRepository implements IChartRepository {
         this.jdbcTemplate = new JdbcTemplate(ds);
     }
 
-    public JSONObject getTimeActivityOneYear(User user){
+    public HashMap<String, Double> getTimeActivityOneYear(User user){
         List<Chart> chart;
-        JSONObject json = new JSONObject();
-        int secInYear = 31_556_926;
+        HashMap<String, Double> json = new HashMap<>();
+        Long secInYear = 31_556_926L;
+        Long tempYear = 31_556_926L;
         String sql = "SELECT c.title, ROUND(SUM(EXTRACT(EPOCH FROM (time_ended - time_started)))) " +
                 "FROM activity a join category c on a.category_id = c.category_id " +
                 "where a.user_id = '"+ user.getId()+"' and time_ended != '1111-11-11 11:11:11' " +
@@ -38,24 +42,32 @@ public class ChartRepository implements IChartRepository {
             chart = jdbcTemplate.query(sql, (rs, rowNum) -> new Chart(rs.getString("title"),
                     rs.getInt("round")));
         }catch(EmptyResultDataAccessException e){
-            return json.put("idle", secInYear);
+            return null;
         }
 
         for(Chart ac: chart){
-            System.out.println(ac.getTitle() + " " + ac.getTotalTime());
-            secInYear-=ac.getTotalTime();
-            json.put(ac.getTitle(), ac.getTotalTime());
+            tempYear-=ac.getTotalTime();
+            json.put(ac.getTitle(), (double) round((double)(100*ac.getTotalTime())/secInYear, 2));
         }
         if(secInYear > 0) {
-            json.put("idle", secInYear);
+            json.put("idle", (double) round((double)(100*tempYear)/secInYear, 2));
         }
 
         return json;
     }
-    public JSONObject getTimeActivityOneMonth(User user){
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = BigDecimal.valueOf(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
+    public HashMap<String, Double> getTimeActivityOneMonth(User user){
         List<Chart> chart;
-        JSONObject json = new JSONObject();
-        int secInMonth = 2_629_743;
+        HashMap<String, Double> json = new HashMap<>();
+
+        Long secInMonth = 2_629_743L;
+        Long tempMonth = 2_629_743L;
         String sql = "SELECT c.title, ROUND(SUM(EXTRACT(EPOCH FROM (time_ended - time_started)))) " +
                 "FROM activity a join category c on a.category_id = c.category_id " +
                 "where a.user_id = '"+ user.getId()+"' and time_ended != '1111-11-11 11:11:11' " +
@@ -65,24 +77,24 @@ public class ChartRepository implements IChartRepository {
             chart = jdbcTemplate.query(sql, (rs, rowNum) -> new Chart(rs.getString("title"),
                     rs.getInt("round")));
         }catch(EmptyResultDataAccessException e){
-            return json.put("idle", secInMonth);
+            return null;
         }
 
         for(Chart ac: chart){
-            System.out.println(ac.getTitle() + " " + ac.getTotalTime());
-            secInMonth-=ac.getTotalTime();
-            json.put(ac.getTitle(), ac.getTotalTime());
+            tempMonth-=ac.getTotalTime();
+            json.put(ac.getTitle(), (double) round((double)(100*ac.getTotalTime())/secInMonth, 2));
         }
         if(secInMonth > 0) {
-            json.put("idle", secInMonth);
+            json.put("idle", (double) round((double)(100*tempMonth)/secInMonth, 2));
         }
 
         return json;
     }
-    public JSONObject getTimeActivityOneWeek(User user){
+    public HashMap<String, Double> getTimeActivityOneWeek(User user){
         List<Chart> chart;
-        JSONObject json = new JSONObject();
-        int secInWeek = 604_800;
+        HashMap<String, Double> jsonMap = new HashMap<>();
+        Long secInWeek = 604_800L;
+        Long tempTime = 604_800L;
         String sql = "SELECT c.title, ROUND(SUM(EXTRACT(EPOCH FROM (time_ended - time_started)))) " +
                 "FROM activity a join category c on a.category_id = c.category_id " +
                 "where a.user_id = '"+ user.getId()+"' and time_ended != '1111-11-11 11:11:11' " +
@@ -92,21 +104,25 @@ public class ChartRepository implements IChartRepository {
             chart = jdbcTemplate.query(sql, (rs, rowNum) -> new Chart(rs.getString("title"),
                     rs.getInt("round")));
         }catch(EmptyResultDataAccessException e){
-            return json.put("idle", secInWeek);
+            return null;
         }
 
+        System.out.println(chart.get(0).getTitle());
         for(Chart ac: chart){
             System.out.println(ac.getTitle() + " " + ac.getTotalTime());
-            secInWeek-=ac.getTotalTime();
-            json.put(ac.getTitle(), ac.getTotalTime());
+            tempTime-=ac.getTotalTime();
+            jsonMap.put(ac.getTitle(), (double) round((double)(100*ac.getTotalTime())/secInWeek,2));
         }
-        if(secInWeek > 0) {
-            json.put("idle", secInWeek);
+        if(tempTime > 0) {
+            jsonMap.put("idle", (double) round((double)(100*tempTime)/secInWeek, 2));
         }
-        return json;
+        return jsonMap;
     }
+
+
     public JSONArray getTimeActivityOneDay(User user){
         List<Chart> chart;
+
         Calendar cal1 = Calendar.getInstance();
         Calendar cal2 = Calendar.getInstance();
         JSONObject json = new JSONObject();
@@ -140,9 +156,9 @@ public class ChartRepository implements IChartRepository {
             json1.put("ClassName", ac.getTitle());
             json1.put("start", cal1.get(Calendar.HOUR_OF_DAY));
             json1.put("end", cal2.get(Calendar.HOUR_OF_DAY));
-            json.put("", json1);
+            jsonArray.put(json1);
         }
 
-        return jsonArray.put(json);
+        return jsonArray;
     }
 }

@@ -69,7 +69,7 @@ public class ActivityController {
     }
 
     private boolean autoHandler(String description, UUID user_id){
-        Category category = categoryRepository.getCategoryByID(UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454"));
+        Category category = categoryRepository.getCategoryByID(UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-41f53c4c9124"));
         Activity activity = new Activity(UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454"),
                 user_id,
                 description,
@@ -79,7 +79,7 @@ public class ActivityController {
         return activityRepository.addActivity(activity);
     }
     private boolean startedEndedHandler(String timeStarted, String timeEnded, String description,UUID user_id){
-        Category category = categoryRepository.getCategoryByID(UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454"));
+        Category category = categoryRepository.getCategoryByID(UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-41f53c4c9124"));
         Timestamp timestampSt =
                 Timestamp.valueOf(
                         new SimpleDateFormat("yyyy-MM-dd ")
@@ -92,7 +92,7 @@ public class ActivityController {
                                 .format(new Date())
                                 .concat(timeEnded + ":00")
                 );
-        Activity activity = new Activity(UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454"),
+        Activity activity = new Activity(UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-41f53c4c9124"),
                 user_id,
                 description,
                 timestampSt,
@@ -102,7 +102,7 @@ public class ActivityController {
         return activityRepository.addActivity(activity);
     }
     private boolean totalTimeHandler(int totalTime, String description, UUID user_id){
-        Category category = categoryRepository.getCategoryByID(UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454"));
+        Category category = categoryRepository.getCategoryByID(UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-41f53c4c9124"));
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         timestamp.setTime(timestamp.getTime() - TimeUnit.MINUTES.toMillis(totalTime));
         Activity activity = new Activity(UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454"),
