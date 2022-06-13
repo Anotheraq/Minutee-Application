@@ -15,7 +15,6 @@
     <script th:src="@{js/checkbox.js}" defer></script>
     <script th:src="@{js/test.js}" defer></script>
     <script th:src="@{js/redirect.js}" defer></script>
-    <script th:src="@{js/test1.js}" defer></script>
 </head>
 <body>
 <div class="upper-text">
@@ -29,7 +28,7 @@
     <div class="category-container">
         CATEGORY
         <select name="subject" id="category" class="category-select">
-            <option value="" selected="selected">Choose category</option>
+            <option name="categories" selected="selected">Choose category</option>
         </select>
     </div>
 
@@ -89,9 +88,10 @@
         <div class="dropup">
             <button class="dropbtn"><i class="fas fa-chart-line"></i></button>
             <div class="dropup-content-second">
-                <a href="#">Daily report</a>
-                <a href="#">Monthly report</a>
-                <a href="#">Overall reports</a>
+                <a onclick="redirect('oneDayChart')">Daily report</a>
+                <a onclick="redirect('oneWeekChart')">Weekly report</a>
+                <a onclick="redirect('oneMonthChart')">Monthly report</a>
+                <a onclick="redirect('oneYearChart')">Yearly report</a>
             </div>
         </div>
         <i class="fas fa-user-astronaut"></i>

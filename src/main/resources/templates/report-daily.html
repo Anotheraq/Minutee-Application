@@ -17,6 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
     <link rel="stylesheet" th:href="@{css/utilities.css}">
+    <script th:src="@{js/redirect.js}" defer></script>
 </head>
 <body>
 <header>
@@ -56,19 +57,20 @@
         <div class="dropup">
             <button class="dropbtn"><i class="fas fa-clock"></i></button>
             <div class="dropup-content">
-                <a href="#">Add activity</a>
-                <a href="recent-activities.html">Recent Activities</a>
-                <a href="activities-in-progress.html">Unfinished activities</a>
+                <a onclick="redirect('add-activity')">Add activity</a>
+                <a onclick="redirect('recent-activities')">Recent Activities</a>
+                <a onclick="redirect('activities-in-progress')">Unfinished activities</a>
             </div>
         </div>
     <i class="fas fa-layer-group"></i>
         <div class="dropup">
-        <button class="dropbtn"><i class="fas fa-chart-line"></i></button>
-        <div class="dropup-content-second">
-            <a href="#">Daily report</a>
-            <a href="#">Monthly report</a>
-            <a href="#">Overall reports</a>
-        </div>
+            <button class="dropbtn"><i class="fas fa-chart-line"></i></button>
+            <div class="dropup-content-second">
+                <a href="#">Daily report</a>
+                <a onclick="redirect('oneWeekChart')">Weekly report</a>
+                <a onclick="redirect('oneMonthChart')">Monthly report</a>
+                <a onclick="redirect('oneYearChart')">Yearly report</a>
+            </div>
         </div>
     <i class="fas fa-user-astronaut"></i>
     </div>

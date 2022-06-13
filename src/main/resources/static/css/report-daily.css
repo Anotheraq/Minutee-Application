@@ -86,18 +86,30 @@
          fill: rgba(0, 0, 0, 0.2);
      }
 
-     .awake-hours {
-     fill: rgba(225, 225, 225, 0.3);
-     }
-     .work-hours {
-     fill: rgba(90, 0, 0, 0.4);
-     }
-     .social-hours {
-     fill: rgba(180, 204, 5, 0.3);
-     }
-     .sport{
-     fill: rgba(20, 30, 200, 0.3);
-     }
+    .Job,.additional-text {
+        fill: rgba(0,0,128, 0.3);
+    }
+    .Family {
+        fill: rgba(219,112,147, 0.4);
+    }
+    .Movie {
+        fill: rgba(255,127,80, 0.3);
+    }
+    .Sport{
+        fill: rgba(34,139,34, 0.3);
+    }
+    .Relax{
+        fill: rgba(147,112,219, 0.3);
+    }
+    .Games{
+        fill: rgba(100,149,237, 0.3);
+    }
+    .Entertainment{
+        fill: rgba(218,165,32, 0.3);
+    }
+    .Outdoor{
+        fill: rgba(255,99,71, 0.3);
+    }
     }
 
 svg {

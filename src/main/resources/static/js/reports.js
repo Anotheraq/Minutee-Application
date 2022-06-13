@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
 
 
 
-
+    console.log(timeSlices);
     timeSlices.forEach(function (slice) {
         r = radius-10
 

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.util.List;
-import java.util.UUID;
 @Repository
 public class CategoryRepository implements ICategoryRepository{
 
@@ -21,7 +20,7 @@ public class CategoryRepository implements ICategoryRepository{
     }
 
     @Override
-    public List<Category> getCategories(UUID user_id) {
+    public List<Category> getCategories() {
         List<Category>  category;
         String sql = "SELECT * FROM category;";
 
@@ -36,9 +35,9 @@ public class CategoryRepository implements ICategoryRepository{
     }
 
     @Override
-    public Category getCategoryByID(UUID category_id) {
+    public Category getCategoryByTitle(String title) {
         Category  category;
-        String sql = "SELECT * FROM category where category_id = '"+category_id+"';";
+        String sql = "SELECT * FROM category where title = '"+title+"';";
 
         try {
             category = jdbcTemplate.queryForObject(sql, (rs, rowNum) -> new Category(rs.getObject("category_id", java.util.UUID.class),

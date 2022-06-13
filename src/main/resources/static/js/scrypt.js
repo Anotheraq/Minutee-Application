@@ -1,6 +1,12 @@
 const categoryObject = {
-    "ICON1": {},
-    "ICON2": {}
+    "Movie": {},
+    "Games": {},
+    "Job": {},
+    "Family": {},
+    "Sport": {},
+    "Relax": {},
+    "Outdoor": {},
+    "Entertainment": {}
 };
 window.onload = function() {
     const categorySel = document.getElementById("category");
@@ -26,7 +32,4 @@ $(document).ready(function() {
             visible = true;
         }
     });
-
-
-
 });

@@ -56,6 +56,30 @@ public class ActivityRepository implements IActivityRepository {
         return activity;
     }
 
+    public List<Activity> getFinishedActivities(UUID user_id) {
+
+        List<Activity> activity;
+        String sql = "select  activity_id, a.category_id as category_id, user_id, description, time_ended, time_started, color, title " +
+                "from activity a join category c on a.category_id = c.category_id " +
+                "where user_id = '" + user_id + "' and time_ended != '1111-11-11 11:11:11';";
+
+        try {
+            activity = jdbcTemplate.query(sql, (rs, rowNum) -> new Activity(rs.getInt("activity_id"),
+                    rs.getObject("category_id", java.util.UUID.class),
+                    rs.getObject("user_id", java.util.UUID.class),
+                    rs.getString("description"),
+                    rs.getTimestamp("time_started"),
+                    rs.getTimestamp("time_ended"),
+                    new Category(
+                            rs.getObject("category_id", java.util.UUID.class),
+                            rs.getString("color"),
+                            rs.getString("title")
+                    )));
+        }catch(EmptyResultDataAccessException e){
+            return null;
+        }
+        return activity;
+    }
     @Override
     public List<Activity> getUnifnishedActivities(UUID user_id) {
 

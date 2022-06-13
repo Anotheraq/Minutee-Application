@@ -153,7 +153,7 @@ public class ChartRepository implements IChartRepository {
                 cal1.setTime(ac.getTimeStarted());
             }
             ac.setTotalTime((ac.getTimeEnded().getTime() - ac.getTimeStarted().getTime())/1000);
-            json1.put("ClassName", ac.getTitle());
+            json1.put("className", ac.getTitle());
             json1.put("start", cal1.get(Calendar.HOUR_OF_DAY));
             json1.put("end", cal2.get(Calendar.HOUR_OF_DAY));
             jsonArray.put(json1);

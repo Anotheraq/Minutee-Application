@@ -1,11 +1,17 @@
 
 @media (max-width: 428px) {
+
+    *{
+        font-family: 'Poppins', sans-serif;
+    }
+
     body {
         background: #fff;
     }
 
     .content-wrapper {
         max-width: 100%;
+
     }
 
     i {
@@ -23,9 +29,6 @@
         margin-bottom: 0px;
         border-radius: 1.5rem;
         box-shadow: 0 -0.3rem 1rem rgba(0, 0, 0, 0.1);
-
-
-
     }
 
     .footer-container{
@@ -108,5 +111,136 @@
         color:#3D5345;
     }
 
+    .header-categories{
+        position: absolute;
+        width: 134px;
+        height: 36px;
+        left: 15px;
+        top: 12px;
+
+
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 36px;
+        /* identical to box height */
+
+
+        color: #000000;
+    }
+
+    .additional-text{
+        /* Here you can delete and modify your categories. */
+        position: absolute;
+        width: 297px;
+        height: 48px;
+        left: 15px;
+        top: 39px;
+
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+
+        color: #7B7B7B;
+    }
+
+    header{
+        height: 110px;
+    }
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 16px;
+    }
+
+    .color-td{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        padding: 16px;
+    }
+
+    th:first-child, td:first-child {
+        text-align: left;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
+
+    .fa-check {
+        color: green;
+    }
+
+    .outer {
+        background-color: #D9D9D9;
+        height: 30px;
+        width: 30px;
+    }
+
+    .inner-circle1{
+        height: 14px;
+        width: 14px;
+        border-radius: 50%;
+    }
+
+
+
+
+    /* Special circle class to enhance html readability */
+    .circle {
+        border-radius: 50%;
+    }
+
+    /* Added to the inner circle to center text */
+    .center-f-inside {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .dropbutton {
+        background-color: inherit;
+        color: black;
+
+        font-size: 16px;
+        border: none;
+
+    }
+
+    .dropdown {
+        position: initial;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        right: 18px;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {background-color: #ddd;}
+
+    .dropdown:hover .dropdown-content {display: block;}
+
+    .dropdown:hover .dropbtn {background-color: inherit;}
 
 }

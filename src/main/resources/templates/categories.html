@@ -2,55 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Recent activities</title>
-    <link rel="stylesheet" th:href="@{css/recent-act.css}">
+    <title>Categories</title>
+    <link rel="stylesheet" th:href="@{css/categories.css}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description" content="The best way to organize your time and control everything in your life">
     <meta name="keywords" content="time, organization, management, workflow">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://kit.fontawesome.com/47ca63bf68.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/201024f681.js" crossorigin="anonymous"></script>
     <script th:src="@{js/scrypt.js}" defer></script>
-    <script th:src="@{js/checkbox.js}" defer></script>
-    <script th:src="@{js/test.js}" defer></script>
     <script th:src="@{js/redirect.js}" defer></script>
+
     <link rel="stylesheet" th:href="@{css/utilities.css}">
 </head>
 <body>
-<main>
-    <div class = "content-wrapper">
-    <div class="upper-text">
-        Recent Activities
+<header>
+<div class = "content-wrapper">
+    <div class="header-categories">
+        CATEGORIES
     </div>
-
     <div class="additional-text">
-        Here you can see your history.
+        Here you can delete and modify your categories.
     </div>
-    </div>
-
-    <table class="timeline">
-        <tr th:each="activity: ${activities}" class="container left">
-            <td class="content">
-                <h2 th:text="${activity.category.title}" class="activity-header"> </h2>
-                <p th:text="${activity.description}" class="activity-description"></p>
-                <div class="activity-time">
-                    <div th:text="${#strings.replace(#strings.abbreviate(activity.timeStarted,19),'...','')}" ><i class="fas fa-clock"></i></div>
+</div>
+</header>
+<main>
+<table>
+    <tr>
+        <th style="width:50%">Name</th>
+        <th>Color</th>
+    </tr>
+    <tr th:each="category:${categories}">
+        <td th:text="${category.title}"></td>
+        <td class="color-td">
+            <div class="color">
+                <div class="outer circle center-f-inside">
+                    <div th:style="${'background-color: ' + category.color}" class="inner-circle1"></div>
                 </div>
-            </td>
-        </tr>
-    </table>
+            </div>
+        </td>
+
+    </tr>
+</table>
 </main>
 
 
-
 <footer>
-    <div class="footer-cont">
+    <div class="container footer-container">
         <div class="dropup">
             <button class="dropbtn"><i class="fas fa-clock"></i></button>
             <div class="dropup-content">
                 <a onclick="redirect('add-activity')">Add activity</a>
-                <a href="#">Recent Activities</a>
+                <a onclick="redirect('recent-activities')">Recent Activities</a>
                 <a onclick="redirect('activities-in-progress')">Unfinished activities</a>
             </div>
         </div>
