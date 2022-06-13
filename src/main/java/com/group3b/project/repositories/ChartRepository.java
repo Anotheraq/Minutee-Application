@@ -102,7 +102,6 @@ public class ChartRepository implements IChartRepository {
         if(secInWeek > 0) {
             json.put("idle", secInWeek);
         }
-
         return json;
     }
     public JSONObject getTimeActivityOneDay(User user){

@@ -5,10 +5,7 @@ import com.group3b.project.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -78,6 +75,16 @@ public class SecurityController {
         return "add-activity";
     }
 
+    @PostMapping("/logout")
+    public String logout(
+            Model model,
+            @SessionAttribute(name="user", required = false) User user) {
+        if(user == null){
+            return "login";
+        }
+        user = null;
+        return "login";
+    }
     @ModelAttribute("user")
     public User user() {
         return new User();

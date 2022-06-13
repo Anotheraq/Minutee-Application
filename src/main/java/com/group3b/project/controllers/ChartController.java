@@ -14,7 +14,6 @@ public class ChartController {
 
     @GetMapping("/oneDayChart")
     public String oneDayChart(@SessionAttribute(name="user", required = false) User user) {
-
         return chartRepository.getTimeActivityOneDay(user).toString();
     }
 

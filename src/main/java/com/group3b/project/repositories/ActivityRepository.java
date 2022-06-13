@@ -74,4 +74,9 @@ public class ActivityRepository implements IActivityRepository {
         return activity;
     }
 
+    public boolean updateActivity(UUID user_id, int activity_id){
+        String sql = "UPDATE activity set time_ended = current_timestamp WHERE user_id = '"+user_id+"' and activity_id = '"+activity_id+"';";
+        return jdbcTemplate.update(sql) > 0;
+    }
+
 }
