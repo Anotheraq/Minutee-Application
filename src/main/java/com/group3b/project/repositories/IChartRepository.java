@@ -8,8 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface IChartRepository {
-    HashMap<String, Double> getTimeActivityOneYear(User user);
-    HashMap<String, Double> getTimeActivityOneMonth(User user);
-    HashMap<String, Double> getTimeActivityOneWeek(User user);
+    JSONArray getTimeActivityOneYear(User user);
+    JSONArray getTimeActivityOneMonth(User user);
+    JSONArray getTimeActivityOneWeek(User user);
     JSONArray getTimeActivityOneDay(User user);
 }

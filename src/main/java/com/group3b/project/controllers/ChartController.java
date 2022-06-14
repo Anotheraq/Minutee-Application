@@ -4,11 +4,10 @@ import com.group3b.project.models.User;
 import com.group3b.project.repositories.ChartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
-
-import java.util.HashMap;
 
 
 @Controller
@@ -17,32 +16,40 @@ public class ChartController {
     ChartRepository chartRepository;
 
     @GetMapping("/oneDayChart")
-    public String oneDayChart(@SessionAttribute(name="user", required = false) User user) {
+    public String oneDayChart(@SessionAttribute(name="user", required = false) User user,
+                              Model model) {
         if(user == null){
             return "login";
         }
+        model.addAttribute("email", user.getEmail());
         return "report-daily";
     }
     @GetMapping("/oneWeekChart")
-    public String oneWeekChart(@SessionAttribute(name="user", required = false) User user) {
+    public String oneWeekChart(@SessionAttribute(name="user", required = false) User user,
+                                Model model) {
         if(user == null){
             return "login";
         }
-        return "oneWeekChart";
+        model.addAttribute("email", user.getEmail());
+        return "report-weekly";
     }
     @GetMapping("/oneMonthChart")
-    public String oneMonthChart(@SessionAttribute(name="user", required = false) User user) {
+    public String oneMonthChart(@SessionAttribute(name="user", required = false) User user,
+                                Model model) {
         if(user == null){
             return "login";
         }
-        return "oneMonthChart";
+        model.addAttribute("email", user.getEmail());
+        return "report-monthly";
     }
     @GetMapping("/oneYearChart")
-    public String oneYearChart(@SessionAttribute(name="user", required = false) User user) {
+    public String oneYearChart(@SessionAttribute(name="user", required = false) User user,
+                               Model model) {
         if(user == null){
             return "login";
         }
-        return "oneYearChart";
+        model.addAttribute("email", user.getEmail());
+        return "report-yearly";
     }
     @GetMapping("/oneDayChart/get")
     @ResponseBody
@@ -52,19 +59,19 @@ public class ChartController {
 
     @GetMapping("/oneWeekChart/get")
     @ResponseBody
-    public HashMap<String, Double> oneWeekChartGet(@SessionAttribute(name="user", required = false) User user) {
-        return chartRepository.getTimeActivityOneWeek(user);
+    public String oneWeekChartGet(@SessionAttribute(name="user", required = false) User user) {
+        return chartRepository.getTimeActivityOneWeek(user).toString();
     }
 
     @GetMapping("/oneMonthChart/get")
     @ResponseBody
-    public HashMap<String, Double> oneMonthChartGet(@SessionAttribute(name="user", required = false) User user) {
-        return chartRepository.getTimeActivityOneMonth(user);
+    public String oneMonthChartGet(@SessionAttribute(name="user", required = false) User user) {
+        return chartRepository.getTimeActivityOneMonth(user).toString();
     }
 
     @GetMapping("/oneYearChart/get")
     @ResponseBody
-    public HashMap<String, Double> oneYearChartGet(@SessionAttribute(name="user", required = false) User user) {
-        return chartRepository.getTimeActivityOneYear(user);
+    public String oneYearChartGet(@SessionAttribute(name="user", required = false) User user) {
+        return chartRepository.getTimeActivityOneYear(user).toString();
     }
 }

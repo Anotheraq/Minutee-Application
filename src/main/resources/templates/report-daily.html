@@ -24,9 +24,7 @@
     <div class="upper-text">
         Report Daily
     </div>
-    <div class="additional-text">
-        Here you can see your daily active
-    </div>
+    <div th:utext="${email} + '<br>Here you can see your daily active'" class="additional-text"></div>
 </header>
 
 <main>
@@ -62,7 +60,7 @@
                 <a onclick="redirect('activities-in-progress')">Unfinished activities</a>
             </div>
         </div>
-    <i class="fas fa-layer-group"></i>
+        <button onclick="redirect('categories')" class="dropbtn"><i class="fas fa-layer-group"></i></button>
         <div class="dropup">
             <button class="dropbtn"><i class="fas fa-chart-line"></i></button>
             <div class="dropup-content-second">
@@ -72,7 +70,12 @@
                 <a onclick="redirect('oneYearChart')">Yearly report</a>
             </div>
         </div>
-    <i class="fas fa-user-astronaut"></i>
+        <div class="dropup">
+            <button class="dropbtn"><i class="fas fa-user-astronaut"></i></i></button>
+            <div class="dropup-content-third">
+                <a onclick="redirect('logout')">Log out</a>
+            </div>
+        </div>
     </div>
 </footer>
 

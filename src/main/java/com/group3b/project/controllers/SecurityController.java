@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
 @SessionAttributes("user")
@@ -48,7 +49,6 @@ public class SecurityController {
             Model model,
             @ModelAttribute("user") User user) {
 
-
         if (email.isEmpty() || password.isEmpty()) {
             model.addAttribute("message", "Please fill in all blanks!");
             return "login";
@@ -70,17 +70,19 @@ public class SecurityController {
         user.setPassword(result.getPassword());
         user.setEmail(result.getEmail());
 
-        return "add-activity";
+        return "redirect:/add-activity";
     }
 
-    @PostMapping("/logout")
+    @GetMapping("/logout")
     public String logout(
             Model model,
-            @SessionAttribute(name="user", required = false) User user) {
+            @ModelAttribute(name="user") User user,
+            SessionStatus status) {
         if(user == null){
             return "login";
         }
-        user = null;
+        status.setComplete();
+
         return "login";
     }
     @ModelAttribute("user")

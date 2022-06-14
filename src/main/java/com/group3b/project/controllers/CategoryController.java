@@ -22,6 +22,7 @@ public class CategoryController {
         if(user == null){
             return "login";
         }
+        model.addAttribute("email", user.getEmail());
         List<Category> categoryList = categoryRepository.getCategories();
         model.addAttribute("categories", categoryList);
         return "categories";

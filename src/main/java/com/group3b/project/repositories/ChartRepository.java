@@ -28,32 +28,42 @@ public class ChartRepository implements IChartRepository {
         this.jdbcTemplate = new JdbcTemplate(ds);
     }
 
-    public HashMap<String, Double> getTimeActivityOneYear(User user){
+    public JSONArray getTimeActivityOneYear(User user){
         List<Chart> chart;
-        HashMap<String, Double> json = new HashMap<>();
+        JSONArray jsonArray = new JSONArray();
+        JSONObject json1;
         Long secInYear = 31_556_926L;
         Long tempYear = 31_556_926L;
-        String sql = "SELECT c.title, ROUND(SUM(EXTRACT(EPOCH FROM (time_ended - time_started)))) " +
+        String sql = "SELECT c.title, c.color,ROUND(SUM(EXTRACT(EPOCH FROM (time_ended - time_started)))) " +
                 "FROM activity a join category c on a.category_id = c.category_id " +
                 "where a.user_id = '"+ user.getId()+"' and time_ended != '1111-11-11 11:11:11' " +
                 "and time_started BETWEEN date_trunc('year', current_date)::timestamp and (date_trunc('year', current_date) + interval '1 year' - interval '1 day')::timestamp " +
-                "GROUP BY c.title;";
+                "GROUP BY c.title, c.color;";
         try{
             chart = jdbcTemplate.query(sql, (rs, rowNum) -> new Chart(rs.getString("title"),
-                    rs.getInt("round")));
+                    rs.getInt("round"),
+                    rs.getString("color")));
         }catch(EmptyResultDataAccessException e){
             return null;
         }
 
         for(Chart ac: chart){
+            json1 = new JSONObject();
             tempYear-=ac.getTotalTime();
-            json.put(ac.getTitle(), (double) round((double)(100*ac.getTotalTime())/secInYear, 2));
+            json1.put("label", ac.getTitle());
+            json1.put("value", (double) round((double)(100*ac.getTotalTime())/secInYear, 2));
+            json1.put("color", ac.getColor());
+            jsonArray.put(json1);
         }
         if(secInYear > 0) {
-            json.put("idle", (double) round((double)(100*tempYear)/secInYear, 2));
+            json1 = new JSONObject();
+            json1.put("label", "idle");
+            json1.put("value", (double) round((double)(100*tempYear)/secInYear, 2));
+            json1.put("color", "black");
+            jsonArray.put(json1);
         }
 
-        return json;
+        return jsonArray;
     }
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
@@ -62,61 +72,82 @@ public class ChartRepository implements IChartRepository {
         bd = bd.setScale(places, RoundingMode.HALF_UP);
         return bd.doubleValue();
     }
-    public HashMap<String, Double> getTimeActivityOneMonth(User user){
+    public JSONArray getTimeActivityOneMonth(User user){
         List<Chart> chart;
-        HashMap<String, Double> json = new HashMap<>();
-
+        JSONArray jsonArray = new JSONArray();
+        JSONObject json1;
         Long secInMonth = 2_629_743L;
         Long tempMonth = 2_629_743L;
-        String sql = "SELECT c.title, ROUND(SUM(EXTRACT(EPOCH FROM (time_ended - time_started)))) " +
+        String sql = "SELECT c.title, c.color, ROUND(SUM(EXTRACT(EPOCH FROM (time_ended - time_started)))) " +
                 "FROM activity a join category c on a.category_id = c.category_id " +
                 "where a.user_id = '"+ user.getId()+"' and time_ended != '1111-11-11 11:11:11' " +
                 "and time_started BETWEEN date_trunc('month', current_date)::timestamp and (date_trunc('month', current_date) + interval '1 month' - interval '1 day')::timestamp " +
-                "GROUP BY c.title;";
+                "GROUP BY c.title, c.color;";
         try{
             chart = jdbcTemplate.query(sql, (rs, rowNum) -> new Chart(rs.getString("title"),
-                    rs.getInt("round")));
+                    rs.getInt("round"),
+                    rs.getString("color")));
         }catch(EmptyResultDataAccessException e){
             return null;
         }
 
         for(Chart ac: chart){
+            json1 = new JSONObject();
             tempMonth-=ac.getTotalTime();
-            json.put(ac.getTitle(), (double) round((double)(100*ac.getTotalTime())/secInMonth, 2));
+            json1.put("label", ac.getTitle());
+            json1.put("value", (double) round((double)(100*ac.getTotalTime())/secInMonth, 2));
+            json1.put("color", ac.getColor());
+            jsonArray.put(json1);
         }
         if(secInMonth > 0) {
-            json.put("idle", (double) round((double)(100*tempMonth)/secInMonth, 2));
+            json1 = new JSONObject();
+            json1.put("label", "idle");
+            json1.put("value", (double) round((double)(100*tempMonth)/secInMonth, 2));
+            json1.put("color", "black");
+
+            jsonArray.put(json1);
         }
 
-        return json;
+        return jsonArray;
     }
-    public HashMap<String, Double> getTimeActivityOneWeek(User user){
+    public JSONArray getTimeActivityOneWeek(User user){
         List<Chart> chart;
-        HashMap<String, Double> jsonMap = new HashMap<>();
+        JSONArray jsonArray = new JSONArray();
+        JSONObject json1;
         Long secInWeek = 604_800L;
         Long tempTime = 604_800L;
-        String sql = "SELECT c.title, ROUND(SUM(EXTRACT(EPOCH FROM (time_ended - time_started)))) " +
+        String sql = "SELECT c.title, c.color, ROUND(SUM(EXTRACT(EPOCH FROM (time_ended - time_started)))) " +
                 "FROM activity a join category c on a.category_id = c.category_id " +
                 "where a.user_id = '"+ user.getId()+"' and time_ended != '1111-11-11 11:11:11' " +
                 "and time_started BETWEEN date_trunc('week', current_date)::timestamp and (date_trunc('week', current_date) + interval '1 week')::timestamp " +
-                "GROUP BY c.title;";
+                "GROUP BY c.title, c.color;";
+
         try{
             chart = jdbcTemplate.query(sql, (rs, rowNum) -> new Chart(rs.getString("title"),
-                    rs.getInt("round")));
+                    rs.getInt("round"),
+                    rs.getString("color")));
         }catch(EmptyResultDataAccessException e){
             return null;
         }
 
-        System.out.println(chart.get(0).getTitle());
+
         for(Chart ac: chart){
-            System.out.println(ac.getTitle() + " " + ac.getTotalTime());
+            json1 = new JSONObject();
             tempTime-=ac.getTotalTime();
-            jsonMap.put(ac.getTitle(), (double) round((double)(100*ac.getTotalTime())/secInWeek,2));
+            json1.put("label", ac.getTitle());
+            json1.put("value", (double) round((double)(100*ac.getTotalTime())/secInWeek,2));
+            json1.put("color", ac.getColor());
+
+            jsonArray.put(json1);
         }
         if(tempTime > 0) {
-            jsonMap.put("idle", (double) round((double)(100*tempTime)/secInWeek, 2));
+            json1 = new JSONObject();
+            json1.put("label", "idle");
+            json1.put("value", (double) round((double)(100*tempTime)/secInWeek, 2));
+            json1.put("color", "black");
+            jsonArray.put(json1);
         }
-        return jsonMap;
+        return jsonArray;
     }
 
 
@@ -125,7 +156,6 @@ public class ChartRepository implements IChartRepository {
 
         Calendar cal1 = Calendar.getInstance();
         Calendar cal2 = Calendar.getInstance();
-        JSONObject json = new JSONObject();
         JSONObject json1;
         JSONArray jsonArray = new JSONArray();
 

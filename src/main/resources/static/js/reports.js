@@ -1,12 +1,3 @@
-$(document).ready(function() {
-    $.ajax({
-        url: "http://localhost:8080/oneDayChart/get"
-    }).then(function(data) {
-        const timeSlices = JSON.parse(data)
-    });
-});
-
-
 var clockWedges = 24;
 
 
@@ -21,10 +12,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     const url = "http://localhost:8080/oneDayChart/get";
     const timeSlices = await fetch(url).then(x => x.json()).then((data) => data);
 
-
-
-
-    console.log(timeSlices);
     timeSlices.forEach(function (slice) {
         r = radius-10
 
@@ -36,7 +23,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         var timeslice = document.createElementNS("http://www.w3.org/2000/svg", "path");
         var largeArcFlag = slice.end - slice.start > clockWedges/2? 1:0
 
-        // var arc = 'M x1 y1    A r r 0 largeArcFlag 1 x2 y2    L 0 0 Z'
         var arc = 'M ' + x1 + ' ' + y1 + ' A ' + r + ' ' + r + ' 0 ' + largeArcFlag + ' 1 ' + x2 + ' ' + y2 + ' L 0 0 Z'
 
 
@@ -56,7 +42,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         var x2 = Math.floor((r-20) * Math.sin(theta));
         var y2 = Math.floor((r-20) * Math.cos(theta));
         var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-        // console.log(line);
         line.setAttribute('x1', x1)
         line.setAttribute('y1', y1)
         line.setAttribute('x2', x2)
@@ -67,7 +52,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         hourText.setAttribute('y', y)
         hourText.innerHTML = i
 
-        // wheel.appendChild(line)
         wheel.appendChild(hourText)
     }
 

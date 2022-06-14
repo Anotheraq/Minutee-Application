@@ -30,6 +30,8 @@ public class ActivityController {
         if(user == null){
             return "login";
         }
+        model.addAttribute("email", user.getEmail());
+
         List<Activity> activityList = activityRepository.getFinishedActivities(user.getId());
         model.addAttribute("activities", activityList);
         return "recent-activities";
@@ -39,6 +41,8 @@ public class ActivityController {
         if(user == null){
             return "login";
         }
+        model.addAttribute("email", user.getEmail());
+
         List<Activity> activityList = activityRepository.getUnifnishedActivities(user.getId());
         model.addAttribute("activities", activityList);
         return "activities-in-progress";
@@ -60,7 +64,7 @@ public class ActivityController {
             return "add-activity";
         }
         UUID id = user.getId();
-        System.out.printf(title);
+        model.addAttribute("email", user.getEmail());
         if(totalTime != null){
             if(totalTime <= 0){
                 return "add-activity";
@@ -129,5 +133,13 @@ public class ActivityController {
                 category
                 );
         return activityRepository.addActivity(activity);
+    }
+
+    @PostMapping("/finishActivity")
+    public String finishActivity(@RequestParam(value="fin-button") int activity_id,
+                                 @SessionAttribute(name="user", required = false) User user
+                                 ){
+        activityRepository.updateActivity(user.getId(), activity_id);
+        return "redirect:/activities-in-progress";
     }
 }

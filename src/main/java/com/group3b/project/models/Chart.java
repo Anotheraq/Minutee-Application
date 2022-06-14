@@ -7,18 +7,20 @@ public class Chart {
     private long totalTime;
     private Timestamp timeStarted;
     private Timestamp timeEnded;
-    public Chart(String title, long totalTime) {
-        this(title, totalTime, null, null);
+    private String color;
+    public Chart(String title, long totalTime, String color) {
+        this(title, totalTime, null, null, color);
     }
 
     public Chart(String title, Timestamp timeStarted, Timestamp timeEnded){
-        this(title, 0, timeStarted, timeEnded);
+        this(title, 0, timeStarted, timeEnded, null);
     }
-    private Chart(String title, long totalTime, Timestamp timeStarted, Timestamp timeEnded) {
+    private Chart(String title, long totalTime, Timestamp timeStarted, Timestamp timeEnded, String color) {
         this.title = title;
         this.totalTime = totalTime;
         this.timeStarted = timeStarted;
         this.timeEnded = timeEnded;
+        this.color = color;
     }
 
     public String getTitle() {
@@ -51,5 +53,13 @@ public class Chart {
 
     public void setTimeEnded(Timestamp timeEnded) {
         this.timeEnded = timeEnded;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }

@@ -47,7 +47,32 @@
         position: relative;
         display: inline-block;
     }
+    .dropup-content-third {
+        display: none;
+        position: absolute;
+        bottom: 56px;
+        background-color: #f1f1f1;
+        right: -30px;
+        width: 275%;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
 
+    /* Links inside the dropup */
+    .dropup-content-third a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    /* Change color of dropup links on hover */
+    .dropup-content-third a:hover {background-color: #ddd}
+
+    /* Show the dropup menu on hover */
+    .dropup:hover .dropup-content-third {
+        display: block;
+    }
     /* Dropup content (Hidden by Default) */
     .dropup-content {
         display: none;
