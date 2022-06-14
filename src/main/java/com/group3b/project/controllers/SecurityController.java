@@ -37,7 +37,7 @@ public class SecurityController {
             model.addAttribute("message", "User already exists");
             return "signup";
         }
-        User user = new User(email, encode.getMd5(password));
+        User user = new User(email, encode.getEncoded(password));
         userRepository.addUser(user);
         return "login";
 
@@ -62,7 +62,7 @@ public class SecurityController {
         if(result == null){
             model.addAttribute("message", "User does not exists");
             return "login";
-        }else if(!result.getPassword().equals(encode.getMd5(password))){
+        }else if(!result.getPassword().equals(encode.getEncoded(password))){
             model.addAttribute("message", "Wrong password");
             return "login";
         }
