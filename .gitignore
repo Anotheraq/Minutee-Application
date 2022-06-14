@@ -7,6 +7,9 @@ target/
 ### JDBC CONFIG ###
 /src/main/java/com/group3b/project/jdbcBuilder.java
 
+### PASSWORD ENCODER ###
+/src/main/java/com/group3b/project/Encode.java
+
 ### STS ###
 .apt_generated
 .classpath
