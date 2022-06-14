@@ -36,7 +36,8 @@ public class ActivityRepository implements IActivityRepository {
         List<Activity> activity;
         String sql = "select  activity_id, a.category_id as category_id, user_id, description, time_ended, time_started, color, title " +
                 "from activity a join category c on a.category_id = c.category_id " +
-                "where user_id = '" + user_id + "';";
+                "where user_id = '" + user_id + "'" +
+                "ORDER BY time_ended desc;";
 
         try {
             activity = jdbcTemplate.query(sql, (rs, rowNum) -> new Activity(rs.getInt("activity_id"),
@@ -61,7 +62,8 @@ public class ActivityRepository implements IActivityRepository {
         List<Activity> activity;
         String sql = "select  activity_id, a.category_id as category_id, user_id, description, time_ended, time_started, color, title " +
                 "from activity a join category c on a.category_id = c.category_id " +
-                "where user_id = '" + user_id + "' and time_ended != '1111-11-11 11:11:11';";
+                "where user_id = '" + user_id + "' and time_ended != '1111-11-11 11:11:11'" +
+                "ORDER BY time_ended desc;";
 
         try {
             activity = jdbcTemplate.query(sql, (rs, rowNum) -> new Activity(rs.getInt("activity_id"),
@@ -85,7 +87,8 @@ public class ActivityRepository implements IActivityRepository {
 
         List<Activity> activity;
         String sql = "SELECT activity_id, a.category_id as category_id, user_id, description, time_ended, time_started, color, title " +
-                "from activity a join category c on a.category_id = c.category_id  WHERE user_id = '" + user_id + "' and time_ended = '1111-11-11 11:11:11';";
+                "from activity a join category c on a.category_id = c.category_id  WHERE user_id = '" + user_id + "' and time_ended = '1111-11-11 11:11:11'" +
+                "ORDER BY time_started;";
 
         try{
             activity = jdbcTemplate.query(sql, (rs, rowNum) -> new Activity(rs.getInt("activity_id"),
