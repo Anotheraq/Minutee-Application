@@ -1,0 +1,44 @@
+@media (max-width: 428px) {
+
+    * {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        background: #fff;
+    }
+
+    header {
+        height: 110px;
+    }
+
+    .upper-text {
+        position: absolute;
+        width: 280px;
+        height: 36px;
+        left: 15px;
+        top: 12px;
+
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 36px;
+        /* identical to box height */
+        color: #000000;
+    }
+
+    .additional-text {
+        position: absolute;
+        width: 297px;
+        height: 48px;
+        left: 15px;
+        top: 39px;
+
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+
+    }
+
+}

@@ -1,18 +1,20 @@
 package com.group3b.project.controllers;
 
+import com.group3b.project.Encode;
 import com.group3b.project.models.User;
 import com.group3b.project.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
+
 @Controller
+@SessionAttributes("user")
 public class SecurityController {
     @Autowired
     UserRepository userRepository;
-
+    Encode encode = new Encode();
     @PostMapping("/signup")
     public String register(
             @RequestParam("email") String email,
@@ -35,17 +37,18 @@ public class SecurityController {
             model.addAttribute("message", "User already exists");
             return "signup";
         }
-        User user = new User(email, password);
+        User user = new User(email, encode.getEncoded(password));
         userRepository.addUser(user);
-
         return "login";
+
     }
 
     @PostMapping("/login")
     public String login(
             @RequestParam("email") String email,
             @RequestParam("password") String password,
-            Model model) {
+            Model model,
+            @ModelAttribute("user") User user) {
 
         if (email.isEmpty() || password.isEmpty()) {
             model.addAttribute("message", "Please fill in all blanks!");
@@ -59,12 +62,32 @@ public class SecurityController {
         if(result == null){
             model.addAttribute("message", "User does not exists");
             return "login";
-        }else if(!result.getPassword().equals(password)){
+        }else if(!result.getPassword().equals(encode.getEncoded(password))){
             model.addAttribute("message", "Wrong password");
             return "login";
         }
 
-        model.addAttribute("message", "You logged in(WIP)");
+        user.setId(result.getId());
+        user.setPassword(result.getPassword());
+        user.setEmail(result.getEmail());
+
+        return "redirect:/add-activity";
+    }
+
+    @GetMapping("/logout")
+    public String logout(
+            Model model,
+            @ModelAttribute(name="user") User user,
+            SessionStatus status) {
+        if(user == null){
+            return "login";
+        }
+        status.setComplete();
+
         return "login";
+    }
+    @ModelAttribute("user")
+    public User user() {
+        return new User();
     }
 }

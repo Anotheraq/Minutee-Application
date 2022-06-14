@@ -1,0 +1,68 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+   margin: 0;
+    width: 100%;
+    height: 100vh;
+
+}
+
+.leftside {
+
+    position: relative;
+    font-family: 'Jura', sans-serif;
+    background: #678B74;
+    height: 100%;
+}
+
+/* Rightside Stylings */
+.rightside {
+    left: 15%;
+    margin: 2%;
+    width: 85%;
+    height: 98%;
+    background: #FFFFFF;
+    z-index: 2;
+    font-family: 'Poppins', sans-serif;
+    position: absolute;
+    border-radius: 10px;
+}
+
+
+.leftside > h1 {
+    color: white;
+    padding: 4%;
+}
+
+a{
+    text-decoration: none;
+    line-height: 2em;
+}
+
+li i{
+    font-size: 1.5em;
+    color: #ffffff;
+
+}
+
+.nav-bar{
+    padding-left: 4%;
+}
+
+.button{
+    margin-left: 0.2em;
+    text-align: center;
+    letter-spacing: 0.7px;
+    color: white;
+    padding: 0.2em;
+    width: 60%;
+}
+
+ul{
+    list-style-type: none;
+}
+

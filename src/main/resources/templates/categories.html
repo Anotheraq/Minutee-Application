@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Categories</title>
+    <link rel="stylesheet" th:href="@{css/categories.css}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="The best way to organize your time and control everything in your life">
+    <meta name="keywords" content="time, organization, management, workflow">
+    <script src="https://kit.fontawesome.com/201024f681.js" crossorigin="anonymous"></script>
+    <script th:src="@{js/scrypt.js}" defer></script>
+    <script th:src="@{js/redirect.js}" defer></script>
+
+    <link rel="stylesheet" th:href="@{css/utilities.css}">
+</head>
+<body>
+<header>
+<div class = "content-wrapper">
+    <div class="header-categories">
+        Categories
+    </div>
+    <div th:utext="${email} + '<br>Here you see your categories'" class="additional-text">
+
+    </div>
+</div>
+</header>
+<main>
+<table>
+    <tr>
+        <th style="width:50%">Name</th>
+        <th>Color</th>
+    </tr>
+    <tr th:each="category:${categories}">
+        <td th:text="${category.title}"></td>
+        <td class="color-td">
+            <div class="color">
+                <div class="outer circle center-f-inside">
+                    <div th:style="${'background-color: ' + category.color}" class="inner-circle1"></div>
+                </div>
+            </div>
+        </td>
+
+    </tr>
+</table>
+</main>
+
+
+<footer>
+    <div class="container footer-container">
+        <div class="dropup">
+            <button class="dropbtn"><i class="fas fa-clock"></i></button>
+            <div class="dropup-content">
+                <a onclick="redirect('add-activity')">Add activity</a>
+                <a onclick="redirect('recent-activities')">Recent Activities</a>
+                <a onclick="redirect('activities-in-progress')">Unfinished activities</a>
+            </div>
+        </div>
+        <button onclick="redirect('categories')" class="dropbtn"><i class="fas fa-layer-group"></i></button>
+        <div class="dropup">
+            <button class="dropbtn"><i class="fas fa-chart-line"></i></button>
+            <div class="dropup-content-second">
+                <a onclick="redirect('oneDayChart')">Daily report</a>
+                <a onclick="redirect('oneWeekChart')">Weekly report</a>
+                <a onclick="redirect('oneMonthChart')">Monthly report</a>
+                <a onclick="redirect('oneYearChart')">Yearly report</a>
+            </div>
+        </div>
+        <div class="dropup">
+            <button class="dropbtn"><i class="fas fa-user-astronaut"></i></i></button>
+            <div class="dropup-content-third">
+                <a onclick="redirect('logout')">Log out</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+</body>
+
+</html>

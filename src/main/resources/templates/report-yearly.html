@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Report daily</title>
+  <link rel="stylesheet" th:href="@{css/footer.css}">
+  <link rel="stylesheet" th:href="@{css/chart-template.css}">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The best way to organize your time and control everything in your life">
+  <meta name="keywords" content="time, organization, management, workflow">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+
+  <script src="https://kit.fontawesome.com/201024f681.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js" defer></script>
+  <link rel="stylesheet" th:href="@{css/utilities.css}">
+  <script th:src="@{js/redirect.js}" defer></script>
+</head>
+<body>
+<header>
+  <div class="upper-text">
+    Report Yearly
+  </div>
+  <div th:utext="${email} + '<br>Here you can see your yearly active'" class="additional-text"></div>
+</header>
+
+<main>
+  <div id="chart" style="display: flex;justify-content: center;align-items: center;"></div>
+
+  <script>
+
+    document.addEventListener("DOMContentLoaded", async (e) => {
+      const url = "http://localhost:8080/oneYearChart/get";
+      const timeSlices = await fetch(url).then(x => x.json()).then((data) => data);
+      console.log(timeSlices);
+      new Morris.Donut({
+        element: 'chart',
+
+        data: timeSlices
+      })
+    })
+
+  </script>
+</main>
+
+
+
+
+<footer>
+  <div class="container footer-container">
+    <div class="dropup">
+      <button class="dropbtn"><i class="fas fa-clock"></i></button>
+      <div class="dropup-content">
+        <a onclick="redirect('add-activity')">Add activity</a>
+        <a onclick="redirect('recent-activities')">Recent Activities</a>
+        <a onclick="redirect('activities-in-progress')">Unfinished activities</a>
+      </div>
+    </div>
+    <button onclick="redirect('categories')" class="dropbtn"><i class="fas fa-layer-group"></i></button>
+    <div class="dropup">
+      <button class="dropbtn"><i class="fas fa-chart-line"></i></button>
+      <div class="dropup-content-second">
+        <a onclick="redirect('oneDayChart')">Daily report</a>
+        <a onclick="redirect('oneWeekChart')">Weekly report</a>
+        <a onclick="redirect('oneMonthChart')">Monthly report</a>
+        <a href="#">Yearly report</a>
+      </div>
+    </div>
+    <div class="dropup">
+      <button class="dropbtn"><i class="fas fa-user-astronaut"></i></i></button>
+      <div class="dropup-content-third">
+        <a onclick="redirect('logout')">Log out</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+</body>
+
+</html>

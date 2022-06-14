@@ -1,0 +1,142 @@
+@media (max-width: 428px) {
+
+    * {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        background: #fff;
+    }
+
+    .content-wrapper {
+        max-width: 100%;
+
+    }
+
+    i {
+        font-size: 1.5rem;
+        color: #678B74;
+    }
+
+    .dropup-content-third {
+        display: none;
+        position: absolute;
+        bottom: 56px;
+        background-color: #f1f1f1;
+        right: -30px;
+        width: 275%;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    /* Links inside the dropup */
+    .dropup-content-third a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    /* Change color of dropup links on hover */
+    .dropup-content-third a:hover {background-color: #ddd}
+
+    /* Show the dropup menu on hover */
+    .dropup:hover .dropup-content-third {
+        display: block;
+    }
+    footer {
+
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 6%;
+        margin-bottom: 0px;
+        border-radius: 1.5rem;
+        box-shadow: 0 -0.3rem 1rem rgba(0, 0, 0, 0.1);
+    }
+
+    .footer-container {
+        display: flex;
+        justify-content: space-around;
+        padding: 12px;
+    }
+
+    .dropbtn {
+        background-color: white;
+        border: none;
+    }
+
+    /* The container <div> - needed to position the dropup content */
+    .dropup {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Dropup content (Hidden by Default) */
+    .dropup-content {
+        display: none;
+        position: absolute;
+        bottom: 50px;
+        background-color: #f1f1f1;
+        width: 850%;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    /* Links inside the dropup */
+    .dropup-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    /* Change color of dropup links on hover */
+    .dropup-content a:hover {
+        background-color: #ddd
+    }
+
+    /* Show the dropup menu on hover */
+    .dropup:hover .dropup-content {
+        display: block;
+    }
+
+    /* Change the background color of the dropup button when the dropup content is shown */
+    .dropup:hover .dropbtn {
+        background-color: #ffffff;
+    }
+
+    .dropup-content-second {
+        display: none;
+        position: absolute;
+        bottom: 50px;
+        background-color: #f1f1f1;
+        left: -514%;
+        width: 850%;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    /* Links inside the dropup */
+    .dropup-content-second a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    /* Change color of dropup links on hover */
+    .dropup-content-second a:hover {
+        background-color: #ddd
+    }
+
+    /* Show the dropup menu on hover */
+    .dropup:hover .dropup-content-second {
+        display: block;
+    }
+
+    .fa-chart-line {
+        color: #3D5345;
+    }
+}
