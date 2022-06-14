@@ -27,16 +27,14 @@
             Activities in progress
         </div>
 
-        <div class="additional-text">
-            Here you can see your activities in progress.
-        </div>
+        <div th:utext="${email} + '<br>Here you can see your activities in progress'" class="additional-text"></div>
     </div>
     <table>
         <tr th:each="activity: ${activities}">
             <button th:style="${'background-color: ' + activity.category.color}" th:text="${activity.category.title}" class="accordion"></button>
             <div class="panel">
                 <div class="upper-menu">
-                    <p th:text="${activity.description}" class="activity-description"></p>
+                    <div th:text="${activity.description}" class="activity-description"></div>
                     <div class="dropdown">
                         <button class="dropbutton">&#8942;</button>
                         <form action="/finishActivity" method="POST" class="form-fin">

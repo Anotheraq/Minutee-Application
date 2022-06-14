@@ -1,5 +1,6 @@
 package com.group3b.project.controllers;
 
+import com.group3b.project.Encode;
 import com.group3b.project.models.User;
 import com.group3b.project.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.support.SessionStatus;
 public class SecurityController {
     @Autowired
     UserRepository userRepository;
-
+    Encode encode = new Encode();
     @PostMapping("/signup")
     public String register(
             @RequestParam("email") String email,
@@ -36,7 +37,7 @@ public class SecurityController {
             model.addAttribute("message", "User already exists");
             return "signup";
         }
-        User user = new User(email, password);
+        User user = new User(email, encode.getMd5(password));
         userRepository.addUser(user);
         return "login";
 
@@ -61,7 +62,7 @@ public class SecurityController {
         if(result == null){
             model.addAttribute("message", "User does not exists");
             return "login";
-        }else if(!result.getPassword().equals(password)){
+        }else if(!result.getPassword().equals(encode.getMd5(password))){
             model.addAttribute("message", "Wrong password");
             return "login";
         }

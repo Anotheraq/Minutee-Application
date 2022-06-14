@@ -18,13 +18,15 @@
     <link rel="stylesheet" th:href="@{css/utilities.css}">
 </head>
 <body>
-<main>
+<nav>
     <div class = "content-wrapper">
-    <div class="upper-text">
-        Recent Activities
-    </div>
+        <div class="upper-text">
+            Recent Activities
+        </div>
         <div th:utext="${email} + '<br>Here you can see your history'" class="additional-text"></div>
     </div>
+</nav>
+<main>
 
     <table class="timeline">
         <tr th:each="activity: ${activities}" class="container left">

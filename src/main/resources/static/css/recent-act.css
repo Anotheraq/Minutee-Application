@@ -72,7 +72,8 @@
         height: 6%;
         margin-top: 40px;
         margin-bottom: 0px;
-        border-radius: 1.5rem;
+        border-top-right-radius: 1.5rem;
+        border-top-left-radius: 1.5rem;
         box-shadow: 0 -0.3rem 1rem rgba(0, 0, 0, 0.1);
         background: white;
         z-index: 3;
@@ -166,6 +167,7 @@
         left: 52px;
         margin: 0 auto;
         margin-right: 10px;
+        padding-bottom: 50px;
     }
     .activity-description{
         color: whitesmoke;
@@ -239,7 +241,7 @@
         position: relative;
         border-radius: 6px;
         padding-left: 10px;
-
+        width: 300px;
         padding-top: 20px;
         padding-bottom: 4px;
         padding-right: 10px;
@@ -331,6 +333,9 @@
 
     main{
         padding-bottom: 40px;
+    }
+    .fa-layer-group, .fa-user-astronaut{
+        color: #678B74;
     }
 
 }
