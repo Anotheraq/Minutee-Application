@@ -11,6 +11,8 @@
     <script src="https://kit.fontawesome.com/201024f681.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" th:href="@{css/intro.css}">
     <link rel="stylesheet" th:href="@{css/utilities.css}">
+    <script th:src="@{js/redirect.js}" defer></script>
+
     <title>Minutee | Sign Up</title>
 </head>
 <body>
@@ -41,7 +43,7 @@
                 <footer>
                     <h2>
                         Already have an account?
-                        <button class="btn-redirect">Log In</button>
+                        <button onclick="redirect('login')" class="btn-redirect">Log In</button>
                     </h2>
                 </footer>
             </div>

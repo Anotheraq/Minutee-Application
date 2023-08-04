@@ -1,4 +1,8 @@
+*{
+    font-family: 'Poppins', sans-serif;
+}
 /* Stylings for primary button */
+
 .btn-primary {
     background: #678B74;
     border-radius: 20px;

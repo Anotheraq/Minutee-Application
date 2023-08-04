@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add activity</title>
+    <link rel="stylesheet" th:href="@{css/add-act.css}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="The best way to organize your time and control everything in your life">
+    <meta name="keywords" content="time, organization, management, workflow">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/201024f681.js" crossorigin="anonymous"></script>
+    <script th:src="@{js/scrypt.js}" defer></script>
+    <script th:src="@{js/checkbox.js}" defer></script>
+    <script th:src="@{js/test.js}" defer></script>
+    <script th:src="@{js/redirect.js}" defer></script>
+</head>
+<body>
+<div class="upper-text">
+    Add Activity
+</div>
+<div th:utext="${email} + '<br>Here you can add your activity'" class="additional-text"></div>
+
+<form class = "content-wrapper" id="form1" action="add-activity" method="POST">
+    <div class="category-container">
+        CATEGORY
+        <select name="subject" id="category" class="category-select">
+            <option name="categories" selected="selected">Choose category</option>
+        </select>
+    </div>
+
+    <div class="description">
+        DESCRIPTION (OPTIONAL)
+        <div>
+            <input name="description" class="description-text" type="text" placeholder="Provide description">
+        </div>
+    </div>
+
+    <div class ="time-header">TIME</div>
+
+    <div class="choose-time">
+        <label class="checkbox">Enter Total Time
+            <input type="radio" name="sg" value="1">
+            <span class="checkmark"></span>
+        </label>
+        <label class="checkbox">Enter Start/End Time
+            <input type="radio" name="sg" value="2">
+            <span class="checkmark"></span>
+        </label>
+        <label class="checkbox">Automatic Start Time
+            <input type="radio" name="sg" value="autoTime">
+            <span class="checkmark"></span>
+        </label>
+
+
+        <div class = "total-time">
+            <input name="total_time" type ="text" placeholder="Enter  total time" class="total-time-input">
+        </div>
+
+        <div class="value">
+            <div class="some-class">
+                <div class="start-end-time">
+                    <input name="start_time" type="text" placeholder="Enter start time" class="value-input">
+
+                    <input name="end_time"  placeholder="Enter end time" class="value-input">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn-add-activity" type="submit">Add activity</button>
+
+</form>
+<footer>
+    <div class="container footer-container">
+        <div class="dropup">
+            <button class="dropbtn"><i class="fas fa-clock"></i></button>
+            <div class="dropup-content">
+                <a href="#">Add activity</a>
+                <a onclick="redirect('recent-activities')">Recent Activities</a>
+                <a onclick="redirect('activities-in-progress')">Unfinished activities</a>
+            </div>
+        </div>
+        <button onclick="redirect('categories')" class="dropbtn"><i class="fas fa-layer-group"></i></button>
+        <div class="dropup">
+            <button class="dropbtn"><i class="fas fa-chart-line"></i></button>
+            <div class="dropup-content-second">
+                <a onclick="redirect('oneDayChart')">Daily report</a>
+                <a onclick="redirect('oneWeekChart')">Weekly report</a>
+                <a onclick="redirect('oneMonthChart')">Monthly report</a>
+                <a onclick="redirect('oneYearChart')">Yearly report</a>
+            </div>
+        </div>
+        <div class="dropup">
+            <button class="dropbtn"><i class="fas fa-user-astronaut"></i></i></button>
+            <div class="dropup-content-third">
+                <a onclick="redirect('logout')">Log out</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+</body>
+
+</html>
